@@ -671,9 +671,11 @@
     }
 
     /* Decrypt animation */
+    .decrypt {
+      transition: color 0.6s ease;
+    }
     .decrypt.scrambled,
     .decrypt.decrypting {
-      font-family: var(--mono) !important;
       color: var(--accent) !important;
       overflow: hidden;
     }
@@ -1239,9 +1241,8 @@
         const real = el.getAttribute('data-decrypt');
         const h = el.offsetHeight;
         el.style.height = h + 'px';
-        el.classList.add('locked');
+        el.classList.add('locked', 'scrambled');
         el.textContent = scramble(real.length);
-        el.classList.add('scrambled');
       });
 
       function animateElement(el, onDone) {
@@ -1273,9 +1274,11 @@
           el.textContent = current.join('');
 
           if (done) {
-            el.classList.remove('scrambled', 'decrypting', 'locked');
-            el.style.height = '';
-            if (onDone) onDone();
+            el.classList.remove('scrambled', 'decrypting');
+            setTimeout(() => {
+              el.classList.remove('locked');
+              el.style.height = '';
+            }, 600);
           } else {
             requestAnimationFrame(tick);
           }
