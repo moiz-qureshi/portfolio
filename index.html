@@ -495,11 +495,14 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .badge-green { background: #22c55e18; color: var(--green); border: 1px solid #22c55e33; }
-    .badge-amber { background: #f59e0b18; color: var(--amber); border: 1px solid #f59e0b33; }
-    .badge-blue { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-mid); }
+    .badge-green { background: #22c55e18; color: #22c55e; border: 1px solid #22c55e33; }
+    .badge-amber { background: #f59e0b18; color: #f59e0b; border: 1px solid #f59e0b33; }
+    .badge-blue { background: #3b82f618; color: #3b82f6; border: 1px solid #3b82f633; }
     .badge-purple { background: #a855f718; color: #a855f7; border: 1px solid #a855f733; }
     .badge-rose { background: #f4368418; color: #f43684; border: 1px solid #f4368433; }
+    .badge-cyan { background: #06b6d418; color: #06b6d4; border: 1px solid #06b6d433; }
+    .badge-red { background: #ef444418; color: #ef4444; border: 1px solid #ef444433; }
+    .badge-teal { background: #14b8a618; color: #14b8a6; border: 1px solid #14b8a633; }
     .program-body {
       padding: 16px 20px;
     }
@@ -998,7 +1001,7 @@
         <div class="reveal program-card">
           <div class="program-header">
             <h4>Endpoint Detection &amp; Response</h4>
-            <span class="program-badge badge-amber">EDR</span>
+            <span class="program-badge badge-red">EDR</span>
           </div>
           <div class="program-body">
             <p>You can't protect what you can't see. I deploy detection agents across every machine &mdash; even specialized systems like NixOS &mdash; to achieve full fleet visibility and detection parity with the parent org's CSOC.</p>
@@ -1043,17 +1046,32 @@
           </div>
         </div>
 
-        <div class="reveal" style="margin-top: 40px;">
-          <div class="card-grid">
-            <div class="g-card">
-              <span class="card-icon">// compliance</span>
-              <h4>Certification Continuity</h4>
-              <p>SOC 2 and ISO 27001 don't pause for an acquisition. I keep the certification engine running so there's no lapse that spooks customers or auditors.</p>
+        <div class="reveal program-card">
+          <div class="program-header">
+            <h4>Certification Continuity</h4>
+            <span class="program-badge badge-teal">Compliance</span>
+          </div>
+          <div class="program-body">
+            <p>SOC 2 and ISO 27001 don't pause for an acquisition. I keep the certification engine running so there's no lapse that spooks customers or auditors.</p>
+            <div class="tag-row">
+              <span class="tag">SOC 2</span>
+              <span class="tag">ISO 27001</span>
+              <span class="tag">Audit Continuity</span>
             </div>
-            <div class="g-card">
-              <span class="card-icon">// validation</span>
-              <h4>Penetration Testing</h4>
-              <p>Before I hand anything off, a third-party ASA pen test validates the posture. No surprises for the BISO inheriting the product.</p>
+          </div>
+        </div>
+
+        <div class="reveal program-card">
+          <div class="program-header">
+            <h4>Penetration Testing</h4>
+            <span class="program-badge badge-cyan">Validation</span>
+          </div>
+          <div class="program-body">
+            <p>Before I hand anything off, a third-party pen test validates the posture. No surprises for the team inheriting the product.</p>
+            <div class="tag-row">
+              <span class="tag">ASA Pen Test</span>
+              <span class="tag">Third-Party Validation</span>
+              <span class="tag">Pre-Handoff</span>
             </div>
           </div>
         </div>
