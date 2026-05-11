@@ -10,7 +10,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Moiz Qureshi — M&A Security Professional" />
   <meta property="og:description" content="I turn acquired companies into secure, enterprise-ready business units. Due diligence through hand-off." />
-  <meta property="og:image" content="og-image.png" />
+  <meta property="og:image" content="https://moizqureshi.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Moiz Qureshi — M&A Security Professional" />
   <meta name="twitter:description" content="I turn acquired companies into secure, enterprise-ready business units. Due diligence through hand-off." />
-  <meta name="twitter:image" content="og-image.png" />
+  <meta name="twitter:image" content="https://moizqureshi.com/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -207,6 +207,14 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero-greeting {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
     }
 
     .hero-tag {
@@ -662,6 +670,17 @@
       .cursor-dot, .cursor-ring { display: none; }
     }
 
+    /* Decrypt animation */
+    .decrypt.scrambled,
+    .decrypt.decrypting {
+      font-family: var(--mono) !important;
+      color: var(--accent) !important;
+      overflow: hidden;
+    }
+    .decrypt.locked {
+      overflow: hidden;
+    }
+
     /* Magnetic button class */
     .magnetic { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
   </style>
@@ -687,6 +706,7 @@
     <!-- ==================== HERO ==================== -->
     <section class="hero-section" id="hero">
       <div class="container">
+        <div class="reveal hero-greeting" id="heroGreeting"></div>
         <div class="reveal hero-tag">M&amp;A Security</div>
         <h1 class="reveal reveal-delay-1 hero-name">Moiz Qureshi<span class="accent">.</span></h1>
         <p class="reveal reveal-delay-2 hero-title">I turn acquired companies into secure ones.</p>
@@ -978,29 +998,27 @@
 
     <!-- ==================== CONTACT ==================== -->
     <section id="contact">
-      <div class="container">
+      <div class="container" id="contactContainer">
         <div class="reveal section-label">05 &mdash; Contact</div>
-        <h2 class="reveal reveal-delay-1 section-heading">Say hello.</h2>
-        <p class="reveal reveal-delay-2 section-sub">
-          Whether you're navigating an acquisition, building a security integration
+        <h2 class="reveal reveal-delay-1 section-heading decrypt" data-decrypt="Say hello.">Say hello.</h2>
+        <p class="reveal reveal-delay-2 section-sub decrypt" data-decrypt="Whether you're navigating an acquisition, building a security integration playbook, or just want to trade notes on the weird edge cases — I'm always up for a conversation.">Whether you're navigating an acquisition, building a security integration
           playbook, or just want to trade notes on the weird edge cases &mdash; I'm always
-          up for a conversation.
-        </p>
+          up for a conversation.</p>
 
         <div class="reveal reveal-delay-3 contact-links">
           <a href="mailto:mqureshi@proton.me" class="contact-link magnetic">
-            <span class="cl-label">Email</span>
-            <span class="cl-value">moiz@qureshi.io</span>
+            <span class="cl-label decrypt" data-decrypt="Email">Email</span>
+            <span class="cl-value decrypt" data-decrypt="moiz@qureshi.io">moiz@qureshi.io</span>
             <span class="cl-arrow">&rarr;</span>
           </a>
           <a href="https://linkedin.com/in/entercustomurl" target="_blank" rel="noopener" class="contact-link magnetic">
-            <span class="cl-label">LinkedIn</span>
-            <span class="cl-value">linkedin.com/in/entercustomurl</span>
+            <span class="cl-label decrypt" data-decrypt="LinkedIn">LinkedIn</span>
+            <span class="cl-value decrypt" data-decrypt="linkedin.com/in/entercustomurl">linkedin.com/in/entercustomurl</span>
             <span class="cl-arrow">&rarr;</span>
           </a>
           <a href="https://github.com/mqureshi" target="_blank" rel="noopener" class="contact-link magnetic">
-            <span class="cl-label">GitHub</span>
-            <span class="cl-value">github.com/interestingsoup</span>
+            <span class="cl-label decrypt" data-decrypt="GitHub">GitHub</span>
+            <span class="cl-value decrypt" data-decrypt="github.com/interestingsoup">github.com/interestingsoup</span>
             <span class="cl-arrow">&rarr;</span>
           </a>
         </div>
@@ -1010,6 +1028,18 @@
   </main>
 
   <script>
+    /* ========== TIME-AWARE GREETING ========== */
+    (() => {
+      const h = new Date().getHours();
+      let greeting;
+      if (h >= 5 && h < 12) greeting = 'Good morning';
+      else if (h >= 12 && h < 17) greeting = 'Good afternoon';
+      else if (h >= 17 && h < 21) greeting = 'Good evening';
+      else greeting = 'Late night';
+      const el = document.getElementById('heroGreeting');
+      if (el) el.textContent = greeting + ' \u2014 welcome.';
+    })();
+
     /* ========== CUSTOM CURSOR ========== */
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
@@ -1188,6 +1218,90 @@
         target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    /* ========== ENCRYPTED CONTACT SECTION ========== */
+    (() => {
+      const glyphs = '0123456789abcdef{}[]/:~|<>^%#@!';
+      const els = document.querySelectorAll('.decrypt');
+      let decryptFired = false;
+
+      function rndChar() {
+        return glyphs[Math.floor(Math.random() * glyphs.length)];
+      }
+
+      function scramble(len) {
+        let s = '';
+        for (let i = 0; i < len; i++) s += rndChar();
+        return s;
+      }
+
+      els.forEach(el => {
+        const real = el.getAttribute('data-decrypt');
+        const h = el.offsetHeight;
+        el.style.height = h + 'px';
+        el.classList.add('locked');
+        el.textContent = scramble(real.length);
+        el.classList.add('scrambled');
+      });
+
+      function animateElement(el, onDone) {
+        const real = el.getAttribute('data-decrypt');
+        const len = real.length;
+        const current = scramble(len).split('');
+        const duration = 1600;
+        const resolveAt = [];
+        for (let i = 0; i < len; i++) {
+          resolveAt[i] = (i / len) * duration * 0.65 + Math.random() * duration * 0.35;
+        }
+
+        el.classList.add('decrypting');
+        const start = performance.now();
+
+        function tick(now) {
+          const elapsed = now - start;
+          let done = true;
+
+          for (let i = 0; i < len; i++) {
+            if (elapsed >= resolveAt[i]) {
+              current[i] = real[i];
+            } else {
+              if (Math.random() < 0.22) current[i] = rndChar();
+              done = false;
+            }
+          }
+
+          el.textContent = current.join('');
+
+          if (done) {
+            el.classList.remove('scrambled', 'decrypting', 'locked');
+            el.style.height = '';
+            if (onDone) onDone();
+          } else {
+            requestAnimationFrame(tick);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      function decryptAll() {
+        if (decryptFired) return;
+        decryptFired = true;
+        els.forEach((el, i) => {
+          setTimeout(() => animateElement(el), i * 60);
+        });
+      }
+
+      const contactSection = document.getElementById('contactContainer');
+      if (contactSection) {
+        const decryptObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) decryptAll();
+          });
+        }, { threshold: 0.2 });
+        decryptObserver.observe(contactSection);
+      }
+    })();
   </script>
 </body>
 </html>
