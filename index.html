@@ -684,8 +684,10 @@
       top: 0;
       height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       overflow: hidden;
+      padding: 40px 24px;
     }
     .sim-sticky .container {
       width: 100%;
@@ -822,7 +824,23 @@
 
     @media (max-width: 768px) {
       .sim-grid { grid-template-columns: 1fr; }
-      .sim-phases { flex-direction: column; }
+      .sim-phases { flex-direction: row; }
+      .sim-phase-tab { padding: 10px 8px; font-size: 11px; }
+      .sim-phase-tab .phase-day { font-size: 9px; }
+      .sim-sticky {
+        padding: 24px 16px;
+        justify-content: flex-start;
+        padding-top: 32px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .sim-sticky .section-heading { font-size: 24px; margin-bottom: 4px; }
+      .sim-sticky .section-sub { font-size: 13px; margin-bottom: 16px; }
+      .sim-sticky .section-label { margin-bottom: 8px; }
+      .sim-item { padding: 10px 12px; }
+      .sim-item-text h5 { font-size: 12px; }
+      .sim-item-text p { font-size: 11px; }
+      .sim-grid { gap: 8px; }
     }
 
     /* Magnetic button class */
@@ -993,7 +1011,7 @@
           <div class="program-body">
             <p>Kill the shared passwords and rogue admin accounts. Migrate everyone to enterprise SSO, enforce RBAC, and make sure every login is auditable from day one.</p>
             <div class="tag-row">
-              <span class="tag">PCSK</span>
+              <span class="tag">JIT Access</span>
               <span class="tag">Okta</span>
               <span class="tag">RBAC</span>
               <span class="tag">IDP Migration</span>
@@ -1135,7 +1153,7 @@
             <div class="sim-grid">
               <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Diligence Closeout</h5><p>Complete all diligence bug remediation. Close every original finding.</p></div></div>
               <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Scanners to Production</h5><p>Promote all vulnerability scanners to production. Full coverage achieved.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>IAM &amp; PCSK Go-Live</h5><p>Enterprise identity fully operational. PCSK onboarding complete.</p></div></div>
+              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>IAM &amp; JIT Access Go-Live</h5><p>Enterprise identity fully operational. Just-in-time privileged access onboarding complete.</p></div></div>
               <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>EDR to Production</h5><p>Production fleet fully covered. IR training complete with acquisition team.</p></div></div>
               <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Full Secret Rotation</h5><p>All secrets rotated. Enterprise vault ownership fully transferred.</p></div></div>
               <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Certification Handoff</h5><p>Compliance locked in. All certifications sustained for legacy products.</p></div></div>
