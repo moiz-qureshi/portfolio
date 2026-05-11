@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moiz Qureshi — M&amp;A Security Professional</title>
+  <meta name="description" content="Moiz Qureshi — M&A Security Lead. I turn acquired companies into secure, enterprise-ready business units, from due diligence through hand-off." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --bg-card: #111113;
+      --bg-card-hover: #18181b;
+      --text: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-dim: #52525b;
+      --accent: #3b82f6;
+      --accent-soft: #3b82f618;
+      --accent-mid: #3b82f633;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --border: #27272a;
+      --border-light: #1e1e21;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: screen;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+      opacity: 0.5;
+    }
+    .cursor-ring.hovering {
+      width: 56px; height: 56px;
+      border-color: var(--green);
+      opacity: 0.8;
+    }
+
+    /* Noise overlay */
+    .noise {
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Particle canvas */
+    #particles {
+      position: fixed; inset: 0;
+      z-index: 0;
+    }
+
+    /* Grid background */
+    .grid-bg {
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    /* Scroll progress */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px;
+      background: var(--accent);
+      z-index: 100;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* Main layout */
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* Side nav dots */
+    .side-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .side-nav a {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      display: block;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .side-nav a.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+    .side-nav a::after {
+      content: attr(data-label);
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text-secondary);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .side-nav a:hover::after { opacity: 1; }
+
+    /* ========== HERO ========== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+    }
+    .hero-name .accent { color: var(--accent); }
+
+    .hero-title {
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .hero-bio {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--accent-mid);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      background: var(--accent-soft);
+    }
+    .hero-cta:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translateY(-2px);
+    }
+    .hero-cta .arrow {
+      transition: transform 0.3s ease;
+    }
+    .hero-cta:hover .arrow { transform: translateX(4px); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: float 2s ease-in-out infinite;
+    }
+    .scroll-indicator span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========== SECTION HEADERS ========== */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-heading {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* ========== STATS ========== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .stat-block {
+      background: var(--bg-card);
+      padding: 28px 24px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .stat-block:hover { background: var(--bg-card-hover); }
+    .stat-val {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ========== GRID CARDS ========== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .g-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .g-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-soft), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .g-card:hover::before { opacity: 1; }
+    .g-card:hover {
+      border-color: var(--accent-mid);
+      transform: translateY(-4px);
+    }
+    .g-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .g-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      position: relative;
+    }
+    .g-card .card-icon {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+      position: relative;
+    }
+
+    /* ========== EXPERTISE ========== */
+    .expertise-block {
+      margin-bottom: 40px;
+      padding-left: 20px;
+      border-left: 2px solid var(--border);
+      transition: border-color 0.3s ease;
+    }
+    .expertise-block:hover { border-left-color: var(--accent); }
+    .expertise-block h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .expertise-block p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      transition: all 0.3s ease;
+    }
+    .tag:hover {
+      border-color: var(--accent-mid);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .tag-active {
+      border-color: var(--accent-mid);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ========== PROGRAMS ========== */
+    .program-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .program-card:hover {
+      border-color: var(--accent-mid);
+      transform: translateX(8px);
+    }
+    .program-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .program-header h4 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .program-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .badge-green { background: #22c55e18; color: var(--green); border: 1px solid #22c55e33; }
+    .badge-amber { background: #f59e0b18; color: var(--amber); border: 1px solid #f59e0b33; }
+    .badge-blue { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-mid); }
+    .badge-purple { background: #a855f718; color: #a855f7; border: 1px solid #a855f733; }
+    .badge-rose { background: #f4368418; color: #f43684; border: 1px solid #f4368433; }
+    .program-body {
+      padding: 16px 20px;
+    }
+    .program-body p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    /* ========== TIMELINE ========== */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+      padding-left: 16px;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -31px; top: 6px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      transition: all 0.3s ease;
+    }
+    .tl-item:hover::before {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+    .tl-phase {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .tl-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ========== CALLOUT ========== */
+    .callout-box {
+      border: 1px solid var(--accent-mid);
+      background: var(--accent-soft);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+    .callout-box h4 {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .callout-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ========== CADENCE ========== */
+    .cadence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .cadence-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .cadence-card:hover {
+      border-color: var(--accent-mid);
+      transform: translateY(-4px);
+    }
+    .cadence-card h5 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .cadence-card p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link:hover {
+      padding-left: 12px;
+      color: var(--accent);
+    }
+    .contact-link .cl-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      min-width: 100px;
+    }
+    .contact-link .cl-value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .contact-link .cl-arrow {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      color: var(--text-dim);
+    }
+    .contact-link:hover .cl-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      margin-top: 32px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .card-grid, .stats-row, .cadence-grid { grid-template-columns: 1fr; }
+      .side-nav { display: none; }
+      section { padding: 60px 20px; }
+      .hero-name { letter-spacing: -1px; }
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    /* Magnetic button class */
+    .magnetic { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+  </style>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="noise"></div>
+  <canvas id="particles"></canvas>
+  <div class="grid-bg"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <nav class="side-nav" id="sideNav">
+    <a href="#hero" data-label="Home" class="active"></a>
+    <a href="#about" data-label="About"></a>
+    <a href="#expertise" data-label="Expertise"></a>
+    <a href="#programs" data-label="Programs"></a>
+    <a href="#experience" data-label="Experience"></a>
+    <a href="#contact" data-label="Contact"></a>
+  </nav>
+
+  <main>
+    <!-- ==================== HERO ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="reveal hero-tag">M&amp;A Security</div>
+        <h1 class="reveal reveal-delay-1 hero-name">Moiz Qureshi<span class="accent">.</span></h1>
+        <p class="reveal reveal-delay-2 hero-title">I turn acquired companies into secure ones.</p>
+        <p class="reveal reveal-delay-3 hero-bio">
+          Before the ink dries on a deal, I'm already inside the target's infrastructure &mdash; standing
+          up C2 boxes, mapping attack surface, and building the security roadmap that will carry a startup
+          from acquisition through enterprise-grade hand-off.
+        </p>
+        <a href="#about" class="reveal reveal-delay-4 hero-cta magnetic">
+          See how it works <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section id="about">
+      <div class="container">
+        <div class="reveal section-label">01 &mdash; About</div>
+        <h2 class="reveal reveal-delay-1 section-heading">One person. Full ownership.</h2>
+        <p class="reveal reveal-delay-2 section-sub">
+          Most security integrations split the work between a technical lead and a program manager.
+          I do both. I set the milestones, execute the uplifts, and own the outcome from
+          first assessment to final dossier &mdash; no hand-offs, no gaps.
+        </p>
+
+        <div class="reveal reveal-delay-3 stats-row">
+          <div class="stat-block">
+            <div class="stat-val">DUE DILIGENCE</div>
+            <div class="stat-lbl">Before the deal closes</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-val">INTEGRATION</div>
+            <div class="stat-lbl">After the announcement</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-val">HAND-OFF</div>
+            <div class="stat-lbl">Production-ready dossier</div>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="reveal g-card">
+            <span class="card-icon">// recon</span>
+            <h4>Assess before the deal</h4>
+            <p>Stand up C2 infrastructure, probe the target environment, and deliver a risk picture to leadership while the deal is still being negotiated.</p>
+          </div>
+          <div class="reveal reveal-delay-1 g-card">
+            <span class="card-icon">// harden</span>
+            <h4>Fix what matters first</h4>
+            <p>Triage P0/P1 vulnerabilities, lock down authentication, roll out compensating controls &mdash; all on a timeline that doesn't slow down the business.</p>
+          </div>
+          <div class="reveal reveal-delay-2 g-card">
+            <span class="card-icon">// align</span>
+            <h4>Ship the hard conversations</h4>
+            <p>Security work stalls when teams don't talk. I run the stand-ups, own the workstreams, and keep DevOps, Engineering, Compliance, and Corp Dev moving in one direction.</p>
+          </div>
+          <div class="reveal reveal-delay-3 g-card">
+            <span class="card-icon">// deliver</span>
+            <h4>Leave a clean handoff</h4>
+            <p>Every integration ends with a Security Dossier: technical debt catalogued, risks scored, remediation roadmap built. The next owner inherits clarity, not chaos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERTISE ==================== -->
+    <section id="expertise">
+      <div class="container">
+        <div class="reveal section-label">02 &mdash; Expertise</div>
+        <h2 class="reveal reveal-delay-1 section-heading">Domain depth.</h2>
+        <p class="reveal reveal-delay-2 section-sub">
+          Acquisitions surface every category of security debt at once.
+          These are the domains I operate in day-to-day.
+        </p>
+
+        <div class="reveal expertise-block">
+          <h3>Vulnerability Remediation</h3>
+          <p>Acquired codebases carry years of deferred security work. I triage the critical findings &mdash; broken auth flows, missing CSP headers, unpatched infrastructure &mdash; and drive them to resolution on a timeline that satisfies both the security org and the business.</p>
+          <div class="tag-row">
+            <span class="tag tag-active">P0/P1 Triage</span>
+            <span class="tag tag-active">Auth Hardening</span>
+            <span class="tag tag-active">CSP Rollout</span>
+            <span class="tag tag-active">Infra Patching</span>
+          </div>
+        </div>
+
+        <div class="reveal expertise-block">
+          <h3>Secrets &amp; Credentials</h3>
+          <p>Startups store secrets everywhere &mdash; env files, shared vaults, Slack messages. I migrate everything to enterprise-grade secret management under formal Safe ownership with rotation policies and a clean audit trail.</p>
+          <div class="tag-row">
+            <span class="tag">CyberArk</span>
+            <span class="tag">Vault Migration</span>
+            <span class="tag">Safe Ownership</span>
+            <span class="tag">Rotation Policies</span>
+          </div>
+        </div>
+
+        <div class="reveal expertise-block">
+          <h3>Cloud Security &amp; Scanning</h3>
+          <p>Most targets have never had CSPM. I onboard their cloud accounts to enterprise scanning, wire up dependency analysis, and give the security org continuous visibility from day one.</p>
+          <div class="tag-row">
+            <span class="tag">Wiz</span>
+            <span class="tag">Socket.io</span>
+            <span class="tag">CSPM</span>
+            <span class="tag">Dependency Analysis</span>
+          </div>
+        </div>
+
+        <div class="reveal expertise-block">
+          <h3>Offensive Due Diligence</h3>
+          <p>Before the deal closes, I stand up C2 infrastructure to run real technical assessments against the target &mdash; not just questionnaires. This surfaces the risks that paper-based diligence misses.</p>
+        </div>
+
+        <div class="reveal expertise-block">
+          <h3>Security Dossiers</h3>
+          <p>The final deliverable. A single document that captures every open risk, every remediation completed, and a clear roadmap for whoever inherits the product. This is what turns a messy integration into a clean hand-off.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROGRAMS ==================== -->
+    <section id="programs">
+      <div class="container">
+        <div class="reveal section-label">03 &mdash; Programs</div>
+        <h2 class="reveal reveal-delay-1 section-heading">Plugging into the mothership.</h2>
+        <p class="reveal reveal-delay-2 section-sub">
+          An acquired company doesn't just need fixes &mdash; it needs to be wired into the
+          enterprise security stack. These are the programs I onboard every acquisition into.
+        </p>
+
+        <div class="reveal program-card">
+          <div class="program-header">
+            <h4>Identity &amp; Access Management</h4>
+            <span class="program-badge badge-green">IAM</span>
+          </div>
+          <div class="program-body">
+            <p>Kill the shared passwords and rogue admin accounts. Migrate everyone to enterprise SSO, enforce RBAC, and make sure every login is auditable from day one.</p>
+            <div class="tag-row">
+              <span class="tag">PCSK</span>
+              <span class="tag">Okta</span>
+              <span class="tag">RBAC</span>
+              <span class="tag">IDP Migration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1 program-card">
+          <div class="program-header">
+            <h4>Endpoint Detection &amp; Response</h4>
+            <span class="program-badge badge-amber">EDR</span>
+          </div>
+          <div class="program-body">
+            <p>You can't protect what you can't see. I get agents on every machine &mdash; even the weird ones running NixOS &mdash; so the SOC has full fleet visibility before the integration is done.</p>
+            <div class="tag-row">
+              <span class="tag">CrowdStrike</span>
+              <span class="tag">Tanium</span>
+              <span class="tag">NixOS</span>
+              <span class="tag">Fleet Coverage</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 program-card">
+          <div class="program-header">
+            <h4>Cloud Security Posture</h4>
+            <span class="program-badge badge-blue">CSPM</span>
+          </div>
+          <div class="program-body">
+            <p>Connect cloud accounts to enterprise scanning so misconfigurations, exposed storage, and risky IAM policies surface automatically instead of in an incident postmortem.</p>
+            <div class="tag-row">
+              <span class="tag">Wiz</span>
+              <span class="tag">Config Auditing</span>
+              <span class="tag">Multi-Cloud</span>
+              <span class="tag">Continuous Monitoring</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-3 program-card">
+          <div class="program-header">
+            <h4>Secret Management</h4>
+            <span class="program-badge badge-purple">Secrets</span>
+          </div>
+          <div class="program-body">
+            <p>Startups treat secrets like sticky notes. I migrate credentials out of env files, shared vaults, and config repos into enterprise-grade secret management with formal Safe ownership, rotation policies, and a full audit trail.</p>
+            <div class="tag-row">
+              <span class="tag">CyberArk</span>
+              <span class="tag">Vault Migration</span>
+              <span class="tag">Safe Ownership</span>
+              <span class="tag">Rotation Policies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4 program-card">
+          <div class="program-header">
+            <h4>AppSec &amp; Supply Chain Scanning</h4>
+            <span class="program-badge badge-rose">AppSec</span>
+          </div>
+          <div class="program-body">
+            <p>Wire up dependency scanning, secret detection in source code, and third-party risk analysis. Most acquired codebases have never been scanned &mdash; the first report is always an eye-opener.</p>
+            <div class="tag-row">
+              <span class="tag">Socket.io</span>
+              <span class="tag">SpectralOps</span>
+              <span class="tag">Secret Detection</span>
+              <span class="tag">Dependency Risk</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="margin-top: 40px;">
+          <div class="card-grid">
+            <div class="g-card">
+              <span class="card-icon">// compliance</span>
+              <h4>Certification Continuity</h4>
+              <p>SOC 2 and ISO 27001 don't pause for an acquisition. I keep the certification engine running so there's no lapse that spooks customers or auditors.</p>
+            </div>
+            <div class="g-card">
+              <span class="card-icon">// validation</span>
+              <h4>Penetration Testing</h4>
+              <p>Before I hand anything off, a third-party ASA pen test validates the posture. No surprises for the BISO inheriting the product.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section id="experience">
+      <div class="container">
+        <div class="reveal section-label">04 &mdash; Process</div>
+        <h2 class="reveal reveal-delay-1 section-heading">Six phases. One owner.</h2>
+
+        <div class="reveal reveal-delay-2 callout-box">
+          <h4>No handoff between strategy and execution</h4>
+          <p>I build the plan and I run the plan. The person who scoped the risk is the same person remediating it, which means nothing gets lost in translation between a slide deck and a pull request.</p>
+        </div>
+
+        <div class="reveal timeline">
+          <div class="tl-item reveal">
+            <div class="tl-phase">01 &mdash; Due Diligence</div>
+            <div class="tl-desc">Stand up C2 infrastructure and run real technical assessments against the target &mdash; before the deal closes and before the team knows they're being evaluated.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-phase">02 &mdash; Discovery</div>
+            <div class="tl-desc">Post-announcement deep dive. Map every service, credential, cloud account, and dependency. Build the full picture of what we're inheriting.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-phase">03 &mdash; Remediation</div>
+            <div class="tl-desc">Fix the things that would keep a CISO up at night. Critical vulns, broken auth, missing encryption, wide-open storage buckets &mdash; addressed in priority order.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-phase">04 &mdash; Onboarding</div>
+            <div class="tl-desc">Wire the acquisition into enterprise IAM, EDR, CSPM, and secret management. By the end, every identity, endpoint, and cloud resource is visible to the parent org.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-phase">05 &mdash; Compliance</div>
+            <div class="tl-desc">Keep SOC 2 running, schedule the mandatory pen test, close the audit gaps. Certifications don't lapse on my watch.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-phase">06 &mdash; Hand-Off</div>
+            <div class="tl-desc">Deliver the Security Dossier &mdash; every risk documented, every remediation tracked, a clear roadmap for the BISO taking over. Clean handoff, no loose ends.</div>
+          </div>
+        </div>
+
+        <div class="reveal" style="margin-top: 48px;">
+          <h3 style="font-size: 17px; margin-bottom: 20px;">How I keep it moving</h3>
+          <div class="cadence-grid">
+            <div class="cadence-card">
+              <h5>Technical Stand-Ups</h5>
+              <p>Weekly sync with DevOps, Engineering, Compliance, and Corp Dev. Short, focused, decision-oriented.</p>
+            </div>
+            <div class="cadence-card">
+              <h5>Integration Workstreams</h5>
+              <p>Parallel tracks for IAM, EDR, cloud, and secrets &mdash; each with its own owner and deadline.</p>
+            </div>
+            <div class="cadence-card">
+              <h5>Exec Visibility</h5>
+              <p>Leadership gets a live dashboard, not a monthly slide deck. Every milestone is tracked and transparent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="reveal section-label">05 &mdash; Contact</div>
+        <h2 class="reveal reveal-delay-1 section-heading">Say hello.</h2>
+        <p class="reveal reveal-delay-2 section-sub">
+          Whether you're navigating an acquisition, building a security integration
+          playbook, or just want to trade notes on the weird edge cases &mdash; I'm always
+          up for a conversation.
+        </p>
+
+        <div class="reveal reveal-delay-3 contact-links">
+          <a href="mailto:mqureshi@proton.me" class="contact-link magnetic">
+            <span class="cl-label">Email</span>
+            <span class="cl-value">moiz@qureshi.io</span>
+            <span class="cl-arrow">&rarr;</span>
+          </a>
+          <a href="https://linkedin.com/in/entercustomurl" target="_blank" rel="noopener" class="contact-link magnetic">
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-value">linkedin.com/in/entercustomurl</span>
+            <span class="cl-arrow">&rarr;</span>
+          </a>
+          <a href="https://github.com/mqureshi" target="_blank" rel="noopener" class="contact-link magnetic">
+            <span class="cl-label">GitHub</span>
+            <span class="cl-value">github.com/interestingsoup</span>
+            <span class="cl-arrow">&rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ========== CUSTOM CURSOR ========== */
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX - 4 + 'px';
+      dot.style.top = mouseY - 4 + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX - 18 + 'px';
+      ring.style.top = ringY - 18 + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .g-card, .program-card, .tag, .cadence-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+    });
+
+    /* ========== MAGNETIC ELEMENTS ========== */
+    document.querySelectorAll('.magnetic').forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    });
+
+    /* ========== CARD GLOW FOLLOW ========== */
+    document.querySelectorAll('.g-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+
+    /* ========== PARTICLES ========== */
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 60;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.4 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function drawLines() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${0.06 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    let mouseParticleX = 0, mouseParticleY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseParticleX = e.clientX;
+      mouseParticleY = e.clientY;
+    });
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        const dx = mouseParticleX - p.x;
+        const dy = mouseParticleY - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 200) {
+          p.x -= dx * 0.002;
+          p.y -= dy * 0.002;
+        }
+        p.update();
+        p.draw();
+      });
+      drawLines();
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* ========== SCROLL REVEAL ========== */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ========== SCROLL PROGRESS ========== */
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTop / docHeight;
+      progressBar.style.transform = `scaleX(${progress})`;
+      progressBar.style.width = '100%';
+    });
+
+    /* ========== SIDE NAV ACTIVE STATE ========== */
+    const sectionIds = ['hero', 'about', 'expertise', 'programs', 'experience', 'contact'];
+    const navDots = document.querySelectorAll('.side-nav a');
+
+    function updateActiveNav() {
+      let current = '';
+      sectionIds.forEach(id => {
+        const section = document.getElementById(id);
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          current = id;
+        }
+      });
+      navDots.forEach(dot => {
+        dot.classList.toggle('active', dot.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    /* ========== SMOOTH NAV SCROLL ========== */
+    document.querySelectorAll('.side-nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
