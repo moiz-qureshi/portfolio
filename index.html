@@ -3,52 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moiz Qureshi — M&amp;A Security Professional</title>
-  <meta name="description" content="Moiz Qureshi — M&A Security Lead. I turn acquired companies into secure, enterprise-ready business units, from due diligence through hand-off." />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Moiz Qureshi — M&A Security Professional" />
-  <meta property="og:description" content="I turn acquired companies into secure, enterprise-ready business units. Due diligence through hand-off." />
-  <meta property="og:image" content="https://moizqureshi.com/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Moiz Qureshi — M&A Security Professional" />
-  <meta name="twitter:description" content="I turn acquired companies into secure, enterprise-ready business units. Due diligence through hand-off." />
-  <meta name="twitter:image" content="https://moizqureshi.com/og-image.png" />
-
+  <title>Moiz Qureshi — Portfolio</title>
+  <meta name="description" content="Moiz Qureshi — Security engineer, founder, creator, builder. Everything I'm working on and everything I've built." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #09090b;
-      --bg-card: #111113;
-      --bg-card-hover: #18181b;
-      --text: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-dim: #52525b;
+      --bg: #06060a;
+      --bg-card: #0c0c10;
+      --text: #f0f0f4;
+      --text-secondary: #8b8b9e;
+      --text-dim: #4a4a5e;
       --accent: #3b82f6;
-      --accent-soft: #3b82f618;
-      --accent-mid: #3b82f633;
-      --green: #22c55e;
-      --amber: #f59e0b;
-      --border: #27272a;
-      --border-light: #1e1e21;
+      --border: #1a1a24;
+      --border-hover: #2a2a3a;
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--sans);
@@ -56,39 +33,9 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Custom cursor */
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-      mix-blend-mode: screen;
-    }
-    .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
-      opacity: 0.5;
-    }
-    .cursor-ring.hovering {
-      width: 56px; height: 56px;
-      border-color: var(--green);
-      opacity: 0.8;
-    }
-
-    /* Noise overlay */
     .noise {
       position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
@@ -96,1469 +43,1167 @@
       z-index: 1;
     }
 
-    /* Particle canvas */
-    #particles {
-      position: fixed; inset: 0;
-      z-index: 0;
-    }
-
-    /* Grid background */
     .grid-bg {
       position: fixed; inset: 0;
       background-image:
-        linear-gradient(var(--border-light) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.3;
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.15;
       z-index: 0;
-      mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 10%, transparent 100%);
     }
 
-    /* Scroll progress */
-    .scroll-progress {
-      position: fixed; top: 0; left: 0;
-      height: 2px;
-      background: var(--accent);
-      z-index: 100;
-      transform-origin: left;
-      transform: scaleX(0);
-    }
-
-    /* Main layout */
-    main {
-      position: relative;
-      z-index: 2;
-    }
-
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 24px;
-      position: relative;
-    }
+    main { position: relative; z-index: 2; }
 
     .container {
-      max-width: 1000px;
+      max-width: 1040px;
       width: 100%;
       margin: 0 auto;
+      padding: 0 24px;
     }
 
-    /* Reveal animations */
+    /* Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: 0.08s; }
+    .rd2 { transition-delay: 0.16s; }
+    .rd3 { transition-delay: 0.24s; }
+    .rd4 { transition-delay: 0.32s; }
+    .rd5 { transition-delay: 0.40s; }
 
-    /* Side nav dots */
-    .side-nav {
-      position: fixed;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .side-nav a {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      display: block;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    .side-nav a.active {
-      background: var(--accent);
-      transform: scale(1.3);
-    }
-    .side-nav a::after {
-      content: attr(data-label);
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 11px;
-      font-family: var(--mono);
-      color: var(--text-secondary);
-      white-space: nowrap;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-    .side-nav a:hover::after { opacity: 1; }
-
-    /* ========== HERO ========== */
-    .hero-section {
-      min-height: 100vh;
+    /* ── Hero ─────────────────────────────── */
+    .hero {
+      min-height: 80vh;
       display: flex;
       align-items: center;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 0 60px;
     }
-
-    .hero-tag {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero-tag::before {
-      content: '';
-      width: 32px; height: 1px;
-      background: var(--accent);
-    }
+    .hero-inner { max-width: 700px; }
 
     .hero-name {
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 16px;
-    }
-    .hero-name .accent { color: var(--accent); }
-
-    .hero-title {
-      font-size: clamp(18px, 2.5vw, 24px);
-      color: var(--text-secondary);
-      font-weight: 300;
-      max-width: 600px;
-      margin-bottom: 32px;
+      font-size: clamp(52px, 9vw, 96px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, var(--text) 60%, var(--text-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-bio {
-      font-size: 15px;
-      color: var(--text-secondary);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 40px;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      text-decoration: none;
-      padding: 10px 20px;
-      border: 1px solid var(--accent-mid);
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      background: var(--accent-soft);
-    }
-    .hero-cta:hover {
-      background: var(--accent);
-      color: var(--bg);
-      transform: translateY(-2px);
-    }
-    .hero-cta .arrow {
-      transition: transform 0.3s ease;
-    }
-    .hero-cta:hover .arrow { transform: translateX(4px); }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      animation: float 2s ease-in-out infinite;
-    }
-    .scroll-indicator span {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ========== SECTION HEADERS ========== */
-    .section-label {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-label::before {
-      content: '';
-      width: 24px; height: 1px;
-      background: var(--accent);
-    }
-
-    .section-heading {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-      line-height: 1.1;
-    }
-
-    .section-sub {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin-bottom: 48px;
-      line-height: 1.7;
-    }
-
-    /* ========== STATS ========== */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 48px;
-    }
-    .stat-block {
-      background: var(--bg-card);
-      padding: 28px 24px;
-      text-align: center;
-      transition: background 0.3s ease;
-    }
-    .stat-block:hover { background: var(--bg-card-hover); }
-    .stat-val {
-      font-family: var(--mono);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .stat-lbl {
-      font-size: 12px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* ========== GRID CARDS ========== */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .g-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .g-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-soft), transparent 40%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .g-card:hover::before { opacity: 1; }
-    .g-card:hover {
-      border-color: var(--accent-mid);
-      transform: translateY(-4px);
-    }
-    .g-card h4 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      position: relative;
-    }
-    .g-card p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      position: relative;
-    }
-    .g-card .card-icon {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      margin-bottom: 12px;
-      display: block;
-      position: relative;
-    }
-
-    /* ========== EXPERTISE ========== */
-    .expertise-block {
-      margin-bottom: 40px;
-      padding-left: 20px;
-      border-left: 2px solid var(--border);
-      transition: border-color 0.3s ease;
-    }
-    .expertise-block:hover { border-left-color: var(--accent); }
-    .expertise-block h3 {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .expertise-block p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    .tag-row {
+    .hero-roles {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 24px;
     }
-    .tag {
+    .hero-role {
       font-family: var(--mono);
       font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 4px;
+      padding: 5px 14px;
+      border-radius: 100px;
       border: 1px solid var(--border);
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .hero-role:hover {
+      border-color: var(--border-hover);
       color: var(--text-secondary);
-      background: var(--bg-card);
-      transition: all 0.3s ease;
-    }
-    .tag:hover {
-      border-color: var(--accent-mid);
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
-    .tag-active {
-      border-color: var(--accent-mid);
-      color: var(--accent);
-      background: var(--accent-soft);
     }
 
-    /* ========== PROGRAMS ========== */
-    .program-card {
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .hero-stat-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-stat-num {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero-stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+    }
+
+    /* ── Category header ──────────────────── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .cat-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .cat-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── Project sections ─────────────────── */
+    .section { padding: 40px 0; }
+    .section:last-of-type { padding-bottom: 80px; }
+
+    /* ── Card grid (desktop) ──────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    /* ── Card (desktop) ───────────────────── */
+    .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      transition: all 0.4s ease;
+      border-radius: 14px;
+      padding: 24px 22px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.45s var(--ease);
       position: relative;
+      overflow: hidden;
     }
-    .program-card:hover {
-      border-color: var(--accent-mid);
-      transform: translateX(8px);
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), var(--glow, #3b82f610), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
-    .program-header {
+    .card:hover::before { opacity: 1; }
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px) scale(1.005);
+    }
+
+    .card.span-2 { grid-column: span 2; }
+    .card.span-full { grid-column: 1 / -1; }
+
+    .card-top {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .card-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
       align-items: center;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-light);
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
     }
-    .program-header h4 {
-      font-size: 14px;
+
+    .card-badge {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+    .b-active { background: #22c55e10; color: #22c55e; border: 1px solid #22c55e22; }
+    .b-venture { background: #a855f710; color: #a855f7; border: 1px solid #a855f722; }
+    .b-creator { background: #f4368410; color: #f43684; border: 1px solid #f4368422; }
+    .b-project { background: #3b82f610; color: #3b82f6; border: 1px solid #3b82f622; }
+    .b-legacy { background: #f59e0b10; color: #f59e0b; border: 1px solid #f59e0b22; }
+
+    .card-body { position: relative; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    .card-title {
+      font-size: 17px;
       font-weight: 600;
+      letter-spacing: -0.3px;
     }
-    .program-badge {
+    .card-role {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .card-url {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .card:hover .card-url { color: var(--text-secondary); }
+    .card-url .arrow {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .card:hover .card-url .arrow { transform: translateX(3px); }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      position: relative;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+    .card-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    a.link-tag {
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+    }
+    a.link-tag:hover {
+      border-color: var(--border-hover);
+      color: var(--text-secondary);
+    }
+
+    /* ── Mobile bubbles (DVD physics) ────── */
+    .bubble-ring {
+      display: none;
+    }
+
+    /* ── Expanded overlay (mobile) ────────── */
+    .expand-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(6,6,10,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .expand-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .expand-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      border-radius: 18px;
+      padding: 28px 24px;
+      max-width: 400px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: expandIn 0.4s var(--ease) both;
+      position: relative;
+    }
+    @keyframes expandIn {
+      from { opacity: 0; transform: scale(0.85) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .expand-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text-dim);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      z-index: 2;
+    }
+    .expand-close:hover { border-color: var(--text-dim); color: var(--text); }
+
+    .expand-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+    .expand-badge {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .expand-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .expand-role {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .expand-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .expand-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .expand-tag {
       font-family: var(--mono);
       font-size: 10px;
       padding: 3px 10px;
       border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .badge-green { background: #22c55e18; color: #22c55e; border: 1px solid #22c55e33; }
-    .badge-amber { background: #f59e0b18; color: #f59e0b; border: 1px solid #f59e0b33; }
-    .badge-blue { background: #3b82f618; color: #3b82f6; border: 1px solid #3b82f633; }
-    .badge-purple { background: #a855f718; color: #a855f7; border: 1px solid #a855f733; }
-    .badge-rose { background: #f4368418; color: #f43684; border: 1px solid #f4368433; }
-    .badge-cyan { background: #06b6d418; color: #06b6d4; border: 1px solid #06b6d433; }
-    .badge-red { background: #ef444418; color: #ef4444; border: 1px solid #ef444433; }
-    .badge-teal { background: #14b8a618; color: #14b8a6; border: 1px solid #14b8a633; }
-    .program-body {
-      padding: 16px 20px;
-    }
-    .program-body p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    /* ========== TIMELINE ========== */
-    .timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 5px; top: 0; bottom: 0;
-      width: 1px;
-      background: var(--border);
-    }
-    .tl-item {
-      position: relative;
-      margin-bottom: 32px;
-      padding-left: 16px;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -31px; top: 6px;
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--bg);
-      transition: all 0.3s ease;
-    }
-    .tl-item:hover::before {
-      border-color: var(--accent);
-      background: var(--accent);
-    }
-    .tl-phase {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .tl-desc {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ========== CALLOUT ========== */
-    .callout-box {
-      border: 1px solid var(--accent-mid);
-      background: var(--accent-soft);
-      border-radius: 8px;
-      padding: 20px 24px;
-      margin-bottom: 40px;
-    }
-    .callout-box h4 {
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .callout-box p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ========== CADENCE ========== */
-    .cadence-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .cadence-card {
-      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    .cadence-card:hover {
-      border-color: var(--accent-mid);
-      transform: translateY(-4px);
-    }
-    .cadence-card h5 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .cadence-card p {
-      font-size: 12px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    /* ========== CONTACT ========== */
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
       text-decoration: none;
-      color: var(--text);
-      transition: all 0.3s ease;
     }
-    .contact-link:last-child { border-bottom: none; }
-    .contact-link:hover {
-      padding-left: 12px;
-      color: var(--accent);
+    a.expand-tag:hover {
+      border-color: var(--border-hover);
+      color: var(--text-secondary);
     }
-    .contact-link .cl-label {
+    .expand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      min-width: 100px;
-    }
-    .contact-link .cl-value {
-      font-size: 15px;
-      font-weight: 500;
-    }
-    .contact-link .cl-arrow {
-      font-size: 18px;
-      transition: transform 0.3s ease;
-      color: var(--text-dim);
-    }
-    .contact-link:hover .cl-arrow {
-      transform: translateX(4px);
       color: var(--accent);
-    }
-
-    .footer-note {
-      font-size: 11px;
-      color: var(--text-dim);
-      font-family: var(--mono);
-      margin-top: 32px;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 768px) {
-      .card-grid, .stats-row, .cadence-grid { grid-template-columns: 1fr; }
-      .side-nav { display: none; }
-      section { padding: 60px 20px; }
-      .hero-name { letter-spacing: -1px; }
-      body { cursor: auto; }
-      .cursor-dot, .cursor-ring { display: none; }
-    }
-
-    /* Decrypt animation */
-    .decrypt {
-      transition: color 0.6s ease;
-    }
-    .decrypt.scrambled,
-    .decrypt.decrypting {
-      color: var(--accent) !important;
-      overflow: hidden;
-    }
-    .decrypt.locked {
-      overflow: hidden;
-    }
-
-    /* ========== INTEGRATION SIMULATOR ========== */
-    .sim-scroll-outer {
-      position: relative;
-    }
-    .sim-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-      padding: 40px 24px;
-    }
-    .sim-sticky .container {
-      width: 100%;
-    }
-
-    .sim-phases {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 24px;
-      background: var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .sim-phase-tab {
-      flex: 1;
-      padding: 14px 16px;
-      background: var(--bg-card);
-      border: none;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text-dim);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    .sim-phase-tab.active {
-      color: var(--accent);
-      background: var(--bg-card-hover);
-    }
-    .sim-phase-tab.completed {
-      color: var(--green);
-      background: var(--bg-card);
-    }
-    .sim-phase-tab .phase-day {
-      display: block;
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 2px;
-    }
-    .sim-phase-tab.active .phase-day { color: var(--accent); opacity: 0.6; }
-    .sim-phase-tab.completed .phase-day { color: var(--green); opacity: 0.6; }
-
-    .sim-progress-track {
-      height: 2px;
-      background: var(--border);
-      border-radius: 2px;
-      margin-bottom: 28px;
-      overflow: hidden;
-    }
-    .sim-progress-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-    .sim-progress-fill.complete { background: var(--green); }
-
-    .sim-panel {
-      display: none;
-    }
-    .sim-panel.active { display: block; }
-
-    .sim-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .sim-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 14px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      text-decoration: none;
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
       border-radius: 8px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      opacity: 0;
-      transform: translateY(10px);
+      margin-top: 8px;
+      transition: background 0.2s ease;
+      align-self: flex-start;
     }
-    .sim-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .sim-item.done { border-color: #22c55e33; }
+    .expand-link:hover { background: #3b82f612; }
 
-    .sim-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: transparent;
-      flex-shrink: 0;
-      margin-top: 4px;
-      transition: all 0.4s ease;
-    }
-    .sim-item.done .sim-dot {
-      border-color: var(--green);
-      background: var(--green);
-    }
-
-    .sim-item-text h5 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 2px;
-      transition: color 0.3s ease;
-    }
-    .sim-item.done .sim-item-text h5 { color: var(--green); }
-    .sim-item-text p {
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.5;
-    }
-
-    .sim-status {
+    /* ── Footer ───────────────────────────── */
+    .footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
       text-align: center;
-      margin-top: 20px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 16px;
+    }
+    .footer-links a {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--text-dim);
-      transition: color 0.3s ease;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s ease;
     }
-
-    .sim-scroll-hint {
-      text-align: center;
-      margin-top: 16px;
+    .footer-links a:hover { color: var(--text); }
+    .footer-note {
       font-family: var(--mono);
       font-size: 10px;
       color: var(--text-dim);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.6;
-      animation: float 2s ease-in-out infinite;
     }
 
+    /* ═══ MOBILE ═══════════════════════════ */
     @media (max-width: 768px) {
-      .sim-grid { grid-template-columns: 1fr; }
-      .sim-phases { flex-direction: row; }
-      .sim-phase-tab { padding: 10px 8px; font-size: 11px; }
-      .sim-phase-tab .phase-day { font-size: 9px; }
-      .sim-sticky {
-        padding: 24px 16px;
-        justify-content: flex-start;
-        padding-top: 32px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+      .hero { min-height: auto; padding: 60px 0 30px; }
+      .hero-name { letter-spacing: -2px; }
+      .hero-stat-row { gap: 24px; flex-wrap: wrap; }
+
+      .card-grid { display: none; }
+
+      .bubble-ring {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: #08080c;
       }
-      .sim-sticky .section-heading { font-size: 24px; margin-bottom: 4px; }
-      .sim-sticky .section-sub { font-size: 13px; margin-bottom: 16px; }
-      .sim-sticky .section-label { margin-bottom: 8px; }
-      .sim-item { padding: 10px 12px; }
-      .sim-item-text h5 { font-size: 12px; }
-      .sim-item-text p { font-size: 11px; }
-      .sim-grid { gap: 8px; }
+
+      .bubble {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: grab;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        touch-action: none;
+        will-change: transform;
+        z-index: 1;
+      }
+      .bubble.dragging { cursor: grabbing; z-index: 10; }
+      .bubble.dragging .bubble-circle {
+        transform: scale(1.15);
+        box-shadow: 0 0 24px rgba(255,255,255,0.08);
+      }
+
+      .bubble-circle {
+        width: 62px; height: 62px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        border: 1px solid var(--border);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        pointer-events: none;
+      }
+
+      .bubble-name {
+        font-family: var(--mono);
+        font-size: 8px;
+        color: var(--text-dim);
+        text-align: center;
+        max-width: 90px;
+        line-height: 1.3;
+        letter-spacing: 0.3px;
+        pointer-events: none;
+        word-break: break-word;
+      }
     }
 
-    /* Magnetic button class */
-    .magnetic { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    /* ── Tablet ────────────────────────────── */
+    @media (min-width: 769px) and (max-width: 960px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .card.span-2 { grid-column: span 2; }
+      .card.span-full { grid-column: 1 / -1; }
+    }
   </style>
 </head>
 <body>
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
   <div class="noise"></div>
-  <canvas id="particles"></canvas>
   <div class="grid-bg"></div>
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <nav class="side-nav" id="sideNav">
-    <a href="#hero" data-label="Home" class="active"></a>
-    <a href="#about" data-label="About"></a>
-    <a href="#toolbox" data-label="Toolbox"></a>
-    <a href="#simulator" data-label="Simulator"></a>
-    <a href="#cadence" data-label="Cadence"></a>
-    <a href="#contact" data-label="Contact"></a>
-  </nav>
 
   <main>
-    <!-- ==================== HERO ==================== -->
-    <section class="hero-section" id="hero">
-      <div class="container">
-        <div class="reveal hero-tag">M&amp;A Security</div>
-        <h1 class="reveal reveal-delay-1 hero-name">Moiz Qureshi<span class="accent">.</span></h1>
-        <p class="reveal reveal-delay-2 hero-title">I turn acquired companies into secure ones.</p>
-        <p class="reveal reveal-delay-3 hero-bio">
-          Before a deal gets the green light, I'm already inside the target's infrastructure &mdash;
-          running offensive assessments, mapping attack surface, and building the security roadmap
-          that carries a company from diligence through enterprise-grade hand-off.
-        </p>
-        <a href="#about" class="reveal reveal-delay-4 hero-cta magnetic">
-          See how I work <span class="arrow">&rarr;</span>
-        </a>
-      </div>
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-      </div>
-    </section>
+    <div class="container">
 
-    <!-- ==================== ABOUT ==================== -->
-    <section id="about">
-      <div class="container">
-        <div class="reveal section-label">01 &mdash; About</div>
-        <h2 class="reveal reveal-delay-1 section-heading">One person. Full ownership.</h2>
-        <p class="reveal reveal-delay-2 section-sub">
-          I operate as both the technical security lead and the program manager. I produce the
-          risk analysis that informs deal decisions, define the security requirements that
-          must be met before a product can ship, and drive every workstream to completion.
-        </p>
-
-        <div class="reveal reveal-delay-3 stats-row">
-          <div class="stat-block">
-            <div class="stat-val">DILIGENCE</div>
-            <div class="stat-lbl">Inform the decision</div>
+      <!-- ── Hero ──────────────────────────── -->
+      <div class="hero">
+        <div class="hero-inner">
+          <h1 class="reveal hero-name">Moiz<br>Qureshi</h1>
+          <div class="reveal rd1 hero-roles">
+            <span class="hero-role">Security Engineer</span>
+            <span class="hero-role">Founder</span>
+            <span class="hero-role">Content Creator</span>
+            <span class="hero-role">Builder</span>
           </div>
-          <div class="stat-block">
-            <div class="stat-val">INTEGRATION</div>
-            <div class="stat-lbl">Clear the security bar</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-val">HAND-OFF</div>
-            <div class="stat-lbl">Clean transition</div>
+          <p class="reveal rd2 hero-desc">
+            I spend my days securing billion-dollar acquisitions and my nights
+            building companies, shipping apps, creating content, and designing
+            websites. I don't pick a lane &mdash; I build the whole road.
+          </p>
+          <div class="reveal rd3 hero-stat-row">
+            <div class="hero-stat">
+              <span class="hero-stat-num">4</span>
+              <span class="hero-stat-label">Companies</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">6+</span>
+              <span class="hero-stat-label">Websites Built</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">2</span>
+              <span class="hero-stat-label">Nonprofits Founded</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">1</span>
+              <span class="hero-stat-label">YC Alum</span>
+            </div>
           </div>
         </div>
+      </div>
 
+      <!-- ═══════════════════════════════════════
+           SECTION 1: What I Do Now
+           ═══════════════════════════════════════ -->
+      <div class="section">
+        <div class="reveal cat-header">
+          <span class="cat-label">What I do now</span>
+          <div class="cat-line"></div>
+        </div>
+
+        <!-- Desktop cards -->
         <div class="card-grid">
-          <div class="reveal g-card">
-            <span class="card-icon">// recon</span>
-            <h4>Inform the deal</h4>
-            <p>Run full offensive security operations on the target &mdash; pen testing, code scanning, infrastructure scanning. The resulting risk profile feeds directly into leadership's go/no-go decision.</p>
+          <a href="https://moizqureshi.com/career" class="reveal rd1 card span-2" style="--glow: #3b82f612;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #3b82f610; color: #3b82f6;">&#x1f6e1;</div>
+              <span class="card-badge b-active">Active</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">M&amp;A Security</h3>
+              <p class="card-role">Acquisition Infrastructure Security Engineer</p>
+              <p class="card-desc">End-to-end security for mergers and acquisitions &mdash; from offensive due diligence and C2 assessments through post-close integration and clean hand-off.</p>
+              <div class="card-tags">
+                <span class="card-tag">Due Diligence</span>
+                <span class="card-tag">Pen Testing</span>
+                <span class="card-tag">Integration</span>
+                <span class="card-tag">Enterprise Security</span>
+              </div>
+            </div>
+            <div class="card-url">moizqureshi.com/career <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://interestingsoup.com" target="_blank" class="reveal rd2 card" style="--glow: #f4368412;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #f4368410; color: #f43684;">&#x1f3ac;</div>
+              <span class="card-badge b-creator">Creator</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">InterestingSoup</h3>
+              <p class="card-role">TikTok &amp; Content Creator</p>
+              <p class="card-desc">Tech, security, and life content &mdash; building a brand one video at a time.</p>
+            </div>
+            <div class="card-url">interestingsoup.com <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://getezpm.com" target="_blank" class="reveal rd1 card" style="--glow: #22c55e12;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #22c55e10; color: #22c55e;">&#x1f3e0;</div>
+              <span class="card-badge b-active">Active</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">EZPM</h3>
+              <p class="card-role">Founder &amp; Operator</p>
+              <p class="card-desc">Property management company simplifying the landlord experience.</p>
+            </div>
+            <div class="card-url">getezpm.com <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://qureshi.io" target="_blank" class="reveal rd2 card" style="--glow: #818cf812;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #818cf810; color: #818cf8;">&#x2666;</div>
+              <span class="card-badge b-active">Active</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Qureshi Inc</h3>
+              <p class="card-role">Founder &amp; Principal</p>
+              <p class="card-desc">Software consulting firm &mdash; strategy, architecture, and development for clients.</p>
+            </div>
+            <div class="card-url">qureshi.io <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://print.interestingsoup.com" target="_blank" class="reveal rd3 card" style="--glow: #f59e0b12;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #f59e0b10; color: #f59e0b;">&#x1f4e6;</div>
+              <span class="card-badge b-active">Active</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">SoupPrints</h3>
+              <p class="card-role">Founder &amp; Operator</p>
+              <p class="card-desc">3D printing business &mdash; custom prints, prototyping, and small-batch production.</p>
+            </div>
+            <div class="card-url">print.interestingsoup.com <span class="arrow">&rarr;</span></div>
+          </a>
+        </div>
+
+        <!-- Mobile bubbles -->
+        <div class="bubble-ring reveal rd1">
+          <div class="bubble" data-id="ma-security">
+            <div class="bubble-circle" style="background: #3b82f608; border-color: #3b82f630;">&#x1f6e1;</div>
+            <span class="bubble-name">M&amp;A Security</span>
           </div>
-          <div class="reveal reveal-delay-1 g-card">
-            <span class="card-icon">// harden</span>
-            <h4>Set and enforce the security bar</h4>
-            <p>Maintain Definitions of Done at each integration phase. Drive remediation of P0/P1 issues that need to be resolved before acquired products can go to market.</p>
+          <div class="bubble" data-id="interestingsoup">
+            <div class="bubble-circle" style="background: #f4368408; border-color: #f4368430;">&#x1f3ac;</div>
+            <span class="bubble-name">Interesting Soup</span>
           </div>
-          <div class="reveal reveal-delay-2 g-card">
-            <span class="card-icon">// align</span>
-            <h4>Coordinate the machine</h4>
-            <p>Drive cross-functional execution across Third Party Security, IAM, Asset Inventory, CSOC, and Enterprise Security Technology. Manage integration budgets and run-rate transfers with Finance.</p>
+          <div class="bubble" data-id="ezpm">
+            <div class="bubble-circle" style="background: #22c55e08; border-color: #22c55e30;">&#x1f3e0;</div>
+            <span class="bubble-name">EZPM</span>
           </div>
-          <div class="reveal reveal-delay-3 g-card">
-            <span class="card-icon">// deliver</span>
-            <h4>Leave a clean handoff</h4>
-            <p>Every integration ends with a Security Dossier: risks documented, remediations tracked, vendor reviews closed, roadmap built. The next owner inherits clarity, not chaos.</p>
+          <div class="bubble" data-id="qureshi-inc">
+            <div class="bubble-circle" style="background: #818cf808; border-color: #818cf830;">&#x2666;</div>
+            <span class="bubble-name">Qureshi Inc</span>
+          </div>
+          <div class="bubble" data-id="soupprints">
+            <div class="bubble-circle" style="background: #f59e0b08; border-color: #f59e0b30;">&#x1f4e6;</div>
+            <span class="bubble-name">SoupPrints</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ==================== TOOLBOX ==================== -->
-    <section id="toolbox">
-      <div class="container">
-        <div class="reveal section-label">02 &mdash; Toolbox</div>
-        <h2 class="reveal reveal-delay-1 section-heading">What I bring to every deal.</h2>
-        <p class="reveal reveal-delay-2 section-sub">
-          Each acquisition gets wired into the same set of enterprise security programs.
-          Here's the stack and how I use it.
-        </p>
+      <!-- ═══════════════════════════════════════
+           SECTION 2: Things I've Built
+           ═══════════════════════════════════════ -->
+      <div class="section">
+        <div class="reveal cat-header">
+          <span class="cat-label">Things I've built</span>
+          <div class="cat-line"></div>
+        </div>
 
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Security Diligence</h4>
-            <span class="program-badge badge-amber">Recon</span>
-          </div>
-          <div class="program-body">
-            <p>Full offensive security operations on acquisition targets: penetration testing, code scanning, infrastructure scanning, and documentation review. The risk profile I produce feeds directly into the deal's go/no-go recommendation.</p>
-            <div class="tag-row">
-              <span class="tag">Pen Testing</span>
-              <span class="tag">Code Scanning</span>
-              <span class="tag">Infra Scanning</span>
-              <span class="tag">Risk Profiling</span>
+        <!-- Desktop cards -->
+        <div class="card-grid">
+          <a href="https://kainban.com" target="_blank" class="reveal rd1 card" style="--glow: #06b6d412;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #06b6d410; color: #06b6d4;">&#x26a1;</div>
+              <span class="card-badge b-project">Project</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">kAInBan</h3>
+              <p class="card-role">Founder &amp; Developer</p>
+              <p class="card-desc">AI-powered kanban app built from scratch.</p>
+            </div>
+            <div class="card-url">kainban.com <span class="arrow">&rarr;</span></div>
+          </a>
+          <div class="reveal rd2 card span-2" style="--glow: #64748b12;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #64748b10; color: #94a3b8;">&#x2728;</div>
+              <span class="card-badge b-project">Design &amp; Dev</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Web Design</h3>
+              <p class="card-role">Designer &amp; Developer</p>
+              <p class="card-desc">Designed and developed websites for multiple organizations and brands.</p>
+              <div class="card-tags web-links">
+                <a href="https://interestingsoup.com" target="_blank" class="card-tag link-tag">InterestingSoup.com</a>
+                <a href="https://rodeomasjid.org" target="_blank" class="card-tag link-tag">RodeoMasjid.org</a>
+                <a href="https://kainban.com" target="_blank" class="card-tag link-tag">kAInBan.com</a>
+                <a href="https://getezpm.com" target="_blank" class="card-tag link-tag">getezpm.com</a>
+                <a href="https://moizqureshi.com" class="card-tag link-tag">moizqureshi.com</a>
+                <span class="card-tag">+ more</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Vulnerability Remediation</h4>
-            <span class="program-badge badge-blue">Vulns</span>
+        <!-- Mobile bubbles -->
+        <div class="bubble-ring reveal rd1">
+          <div class="bubble" data-id="kainban">
+            <div class="bubble-circle" style="background: #06b6d408; border-color: #06b6d430;">&#x26a1;</div>
+            <span class="bubble-name">kAInBan</span>
           </div>
-          <div class="program-body">
-            <p>Acquired codebases carry years of deferred security work. I triage P0/P1 findings, drive fixes across auth, CSP, and infrastructure, and track everything against the Definitions of Done that need to be met before a product can ship.</p>
-            <div class="tag-row">
-              <span class="tag">P0/P1 Triage</span>
-              <span class="tag">Security Bar</span>
-              <span class="tag">Definitions of Done</span>
-              <span class="tag">Auth Hardening</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Identity &amp; Access Management</h4>
-            <span class="program-badge badge-green">IAM</span>
-          </div>
-          <div class="program-body">
-            <p>Kill the shared passwords and rogue admin accounts. Migrate everyone to enterprise SSO, enforce RBAC, and make sure every login is auditable from day one.</p>
-            <div class="tag-row">
-              <span class="tag">JIT Access</span>
-              <span class="tag">Okta</span>
-              <span class="tag">RBAC</span>
-              <span class="tag">IDP Migration</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Endpoint Detection &amp; Response</h4>
-            <span class="program-badge badge-red">EDR</span>
-          </div>
-          <div class="program-body">
-            <p>You can't protect what you can't see. I deploy detection agents across every machine &mdash; even specialized systems like NixOS &mdash; to achieve full fleet visibility and detection parity with the parent org's CSOC.</p>
-            <div class="tag-row">
-              <span class="tag">CrowdStrike</span>
-              <span class="tag">Cortex</span>
-              <span class="tag">Tanium</span>
-              <span class="tag">Fleet Coverage</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Cloud &amp; AppSec Scanning</h4>
-            <span class="program-badge badge-rose">Scanning</span>
-          </div>
-          <div class="program-body">
-            <p>Onboard cloud accounts to CSPM, manage asset inventory ingestion via Wiz, and wire up dependency analysis and secret detection. Also coordinate third-party security assurance reviews of vendors inherited from the acquisition.</p>
-            <div class="tag-row">
-              <span class="tag">Wiz</span>
-              <span class="tag">Asset Inventory</span>
-              <span class="tag">TPSA Reviews</span>
-              <span class="tag">Socket.io</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Secret Management</h4>
-            <span class="program-badge badge-purple">Secrets</span>
-          </div>
-          <div class="program-body">
-            <p>Migrate credentials out of env files, shared vaults, and config repos into enterprise-grade secret management with formal ownership, rotation policies, and a full audit trail.</p>
-            <div class="tag-row">
-              <span class="tag">CyberArk</span>
-              <span class="tag">Vault Migration</span>
-              <span class="tag">Safe Ownership</span>
-              <span class="tag">Rotation Policies</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Certification Continuity</h4>
-            <span class="program-badge badge-teal">Compliance</span>
-          </div>
-          <div class="program-body">
-            <p>SOC 2 and ISO 27001 don't pause for an acquisition. I keep the certification engine running so there's no lapse that spooks customers or auditors.</p>
-            <div class="tag-row">
-              <span class="tag">SOC 2</span>
-              <span class="tag">ISO 27001</span>
-              <span class="tag">Audit Continuity</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal program-card">
-          <div class="program-header">
-            <h4>Penetration Testing</h4>
-            <span class="program-badge badge-cyan">Validation</span>
-          </div>
-          <div class="program-body">
-            <p>Before I hand anything off, a third-party pen test validates the posture. No surprises for the team inheriting the product.</p>
-            <div class="tag-row">
-              <span class="tag">ASA Pen Test</span>
-              <span class="tag">Third-Party Validation</span>
-              <span class="tag">Pre-Handoff</span>
-            </div>
+          <div class="bubble" data-id="web-design">
+            <div class="bubble-circle" style="background: #64748b08; border-color: #64748b30;">&#x2728;</div>
+            <span class="bubble-name">Web Design</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ==================== SIMULATOR ==================== -->
-    <div class="sim-scroll-outer" id="simulator">
-      <div class="sim-sticky">
-        <div class="container">
-          <div class="section-label">03 &mdash; Simulator</div>
-          <h2 class="section-heading" style="margin-bottom: 8px;">Watch an integration run.</h2>
-          <p class="section-sub" style="margin-bottom: 28px;">Keep scrolling &mdash; the 90-day plan plays out as you go.</p>
+      <!-- ═══════════════════════════════════════
+           SECTION 3: Founded & Led
+           ═══════════════════════════════════════ -->
+      <div class="section">
+        <div class="reveal cat-header">
+          <span class="cat-label">Founded &amp; led</span>
+          <div class="cat-line"></div>
+        </div>
 
-          <div class="sim-phases">
-            <div class="sim-phase-tab active" data-phase="0">
-              Close + 30
-              <span class="phase-day">Discovery</span>
+        <!-- Desktop cards -->
+        <div class="card-grid">
+          <a href="https://enveiria.com" target="_blank" class="reveal rd1 card" style="--glow: #a855f712;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #a855f710; color: #a855f7;">&#x1f680;</div>
+              <span class="card-badge b-venture">Venture</span>
             </div>
-            <div class="sim-phase-tab" data-phase="1">
-              Days 30 &ndash; 60
-              <span class="phase-day">Harden &amp; Onboard</span>
+            <div class="card-body">
+              <h3 class="card-title">Envieria</h3>
+              <p class="card-role">Founder &mdash; YC Startup School</p>
+              <p class="card-desc">Connected international college students with U.S. internship opportunities. Selected for Y Combinator Startup School.</p>
+              <div class="card-tags">
+                <span class="card-tag">Startup</span>
+                <span class="card-tag">YC Startup School</span>
+                <span class="card-tag">EdTech</span>
+              </div>
             </div>
-            <div class="sim-phase-tab" data-phase="2">
-              Days 60 &ndash; 90
-              <span class="phase-day">Production &amp; Handoff</span>
+            <div class="card-url">enveiria.com <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://universalmercy.org" target="_blank" class="reveal rd2 card" style="--glow: #14b8a612;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #14b8a610; color: #14b8a6;">&#x1f4da;</div>
+              <span class="card-badge b-venture">Nonprofit</span>
             </div>
+            <div class="card-body">
+              <h3 class="card-title">Universal Mercy</h3>
+              <p class="card-role">Founder &amp; Board of Directors</p>
+              <p class="card-desc">K&ndash;5 Islamic school blending Islamic teaching with American curriculum.</p>
+            </div>
+            <div class="card-url">universalmercy.org <span class="arrow">&rarr;</span></div>
+          </a>
+          <a href="https://rodeomasjid.org" target="_blank" class="reveal rd3 card" style="--glow: #22c55e12;">
+            <div class="card-top">
+              <div class="card-icon" style="background: #22c55e10; color: #22c55e;">&#x1f54c;</div>
+              <span class="card-badge b-venture">Nonprofit</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Rodeo Masjid</h3>
+              <p class="card-role">Co-Founder &amp; Board of Directors</p>
+              <p class="card-desc">Co-founded a community mosque and served on the board of directors.</p>
+            </div>
+            <div class="card-url">rodeomasjid.org <span class="arrow">&rarr;</span></div>
+          </a>
+        </div>
+
+        <!-- Mobile bubbles -->
+        <div class="bubble-ring reveal rd1">
+          <div class="bubble" data-id="envieria">
+            <div class="bubble-circle" style="background: #a855f708; border-color: #a855f730;">&#x1f680;</div>
+            <span class="bubble-name">Envieria</span>
           </div>
-
-          <div class="sim-progress-track">
-            <div class="sim-progress-fill" id="simProgress"></div>
+          <div class="bubble" data-id="universal-mercy">
+            <div class="bubble-circle" style="background: #14b8a608; border-color: #14b8a630;">&#x1f4da;</div>
+            <span class="bubble-name">Universal Mercy</span>
           </div>
-
-          <div class="sim-panel active" data-panel="0">
-            <div class="sim-grid">
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Diligence Findings</h5><p>Create remediation plan &mdash; secrets in code, cloud misconfigs, IAM gaps, AppSec findings.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Vulnerability Management</h5><p>Deploy tactical CSPM scanning and begin triaging critical findings.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Risk Discovery</h5><p>Inventory and threat model all products, pipelines, and runtime. Audit for malicious patterns.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Detection &amp; Response</h5><p>Begin DnR/CSIRT onboarding. Inventory all hosts and plan EDR deployment.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Secrets Rotation</h5><p>Remove exposed secrets from code, rotate compromised credentials, begin vault migration.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Compliance</h5><p>Validate in-progress SOC 2 audit. Set up access to security ticketing and SCM systems.</p></div></div>
-            </div>
+          <div class="bubble" data-id="rodeo-masjid">
+            <div class="bubble-circle" style="background: #22c55e08; border-color: #22c55e30;">&#x1f54c;</div>
+            <span class="bubble-name">Rodeo Masjid</span>
           </div>
-
-          <div class="sim-panel" data-panel="1">
-            <div class="sim-grid">
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Vulnerability Scanning</h5><p>Integrate TVM tooling. Deploy scanners to dev and staging environments.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Risk Remediation</h5><p>Onboard sub-processors for testing. Begin active remediation of prioritized findings.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>IAM Onboarding</h5><p>Migrate corporate apps to enterprise SSO. Kill legacy IDP dependencies.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>EDR Deployment</h5><p>DnR/CSIRT cross-account access live. Deploy EDR agents to dev/staging fleet.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Secret Inventory</h5><p>Complete full secret inventory. Create rotation plans with formal ownership.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Compliance Engagement</h5><p>Enterprise knowledge transfer and legacy customer support continuity.</p></div></div>
-            </div>
-          </div>
-
-          <div class="sim-panel" data-panel="2">
-            <div class="sim-grid">
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Diligence Closeout</h5><p>Complete all diligence bug remediation. Close every original finding.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Scanners to Production</h5><p>Promote all vulnerability scanners to production. Full coverage achieved.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>IAM &amp; JIT Access Go-Live</h5><p>Enterprise identity fully operational. Just-in-time privileged access onboarding complete.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>EDR to Production</h5><p>Production fleet fully covered. IR training complete with acquisition team.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Full Secret Rotation</h5><p>All secrets rotated. Enterprise vault ownership fully transferred.</p></div></div>
-              <div class="sim-item"><div class="sim-dot"></div><div class="sim-item-text"><h5>Certification Handoff</h5><p>Compliance locked in. All certifications sustained for legacy products.</p></div></div>
-            </div>
-          </div>
-
-          <div class="sim-status" id="simStatus">Scroll to begin &mdash; 0 / 18 workstreams</div>
-          <div class="sim-scroll-hint">&#8595; keep scrolling</div>
         </div>
       </div>
+
+      <!-- ── Footer ────────────────────────── -->
+      <div class="footer">
+        <div class="footer-links">
+          <a href="mailto:moiz@qureshi.io">Email</a>
+          <a href="https://linkedin.com/in/entercustomurl" target="_blank">LinkedIn</a>
+          <a href="https://github.com/interestingsoup" target="_blank">GitHub</a>
+          <a href="https://tiktok.com/@interestingsoup" target="_blank">TikTok</a>
+        </div>
+        <p class="footer-note">&copy; 2026 Moiz Qureshi</p>
+      </div>
+
     </div>
-
-    <!-- ==================== CADENCE ==================== -->
-    <section id="cadence">
-      <div class="container">
-        <div class="reveal section-label">04 &mdash; Cadence</div>
-        <h2 class="reveal reveal-delay-1 section-heading">How I keep it moving.</h2>
-        <p class="reveal reveal-delay-2 section-sub">
-          Speed matters in M&amp;A. Here's the operating rhythm that keeps every integration on track.
-        </p>
-        <div class="reveal reveal-delay-3 cadence-grid">
-          <div class="cadence-card">
-            <h5>Cross-Functional Standups</h5>
-            <p>Weekly sync across Third Party Security, IAM, Asset Inventory, CSOC, and Enterprise Security Technology. Short, focused, decision-oriented.</p>
-          </div>
-          <div class="cadence-card">
-            <h5>Parallel Workstreams</h5>
-            <p>Separate tracks for diligence, EDR, IAM, cloud, secrets, and vendor reviews &mdash; each with an owner, a deadline, and a Definition of Done.</p>
-          </div>
-          <div class="cadence-card">
-            <h5>Exec Reporting &amp; Budget</h5>
-            <p>Status dashboards for leadership. Manage integration budgets and coordinate run-rate transfers with Finance for ongoing security tooling.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== CONTACT ==================== -->
-    <section id="contact">
-      <div class="container" id="contactContainer">
-        <div class="reveal section-label">05 &mdash; Contact</div>
-        <h2 class="reveal reveal-delay-1 section-heading decrypt" data-decrypt="Say hello.">Say hello.</h2>
-        <p class="reveal reveal-delay-2 section-sub decrypt" data-decrypt="Whether you're navigating an acquisition, building a security integration playbook, or just want to trade notes on the weird edge cases — I'm always up for a conversation.">Whether you're navigating an acquisition, building a security integration
-          playbook, or just want to trade notes on the weird edge cases &mdash; I'm always
-          up for a conversation.</p>
-
-        <div class="reveal reveal-delay-3 contact-links">
-          <a href="mailto:moiz@qureshi.io" class="contact-link magnetic">
-            <span class="cl-label decrypt" data-decrypt="Email">Email</span>
-            <span class="cl-value decrypt" data-decrypt="moiz@qureshi.io">moiz@qureshi.io</span>
-            <span class="cl-arrow">&rarr;</span>
-          </a>
-          <a href="https://linkedin.com/in/entercustomurl" target="_blank" rel="noopener" class="contact-link magnetic">
-            <span class="cl-label decrypt" data-decrypt="LinkedIn">LinkedIn</span>
-            <span class="cl-value decrypt" data-decrypt="linkedin.com/in/entercustomurl">linkedin.com/in/entercustomurl</span>
-            <span class="cl-arrow">&rarr;</span>
-          </a>
-          <a href="https://github.com/interestingsoup" target="_blank" rel="noopener" class="contact-link magnetic">
-            <span class="cl-label decrypt" data-decrypt="GitHub">GitHub</span>
-            <span class="cl-value decrypt" data-decrypt="github.com/interestingsoup">github.com/interestingsoup</span>
-            <span class="cl-arrow">&rarr;</span>
-          </a>
-        </div>
-
-      </div>
-    </section>
   </main>
 
+  <!-- ── Expand overlay ──────────────────── -->
+  <div class="expand-overlay" id="expandOverlay">
+    <div class="expand-card" id="expandCard">
+      <button class="expand-close" id="expandClose">&times;</button>
+      <div class="expand-icon" id="exIcon"></div>
+      <span class="expand-badge" id="exBadge"></span>
+      <h3 class="expand-title" id="exTitle"></h3>
+      <p class="expand-role" id="exRole"></p>
+      <p class="expand-desc" id="exDesc"></p>
+      <div class="expand-tags" id="exTags"></div>
+      <a class="expand-link" id="exLink" target="_blank">Visit <span>&rarr;</span></a>
+    </div>
+  </div>
+
   <script>
-    /* ========== CUSTOM CURSOR ========== */
-    const dot = document.getElementById('cursorDot');
-    const ring = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    /* ── Scroll reveal & card glow (desktop) ── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left = mouseX - 4 + 'px';
-      dot.style.top = mouseY - 4 + 'px';
-    });
-
-    function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX - 18 + 'px';
-      ring.style.top = ringY - 18 + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    document.querySelectorAll('a, button, .g-card, .program-card, .tag, .cadence-card').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-    });
-
-    /* ========== MAGNETIC ELEMENTS ========== */
-    document.querySelectorAll('.magnetic').forEach(el => {
-      el.addEventListener('mousemove', e => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-      });
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = '';
-      });
-    });
-
-    /* ========== CARD GLOW FOLLOW ========== */
-    document.querySelectorAll('.g-card').forEach(card => {
+    document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
     });
 
-    /* ========== PARTICLES ========== */
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const PARTICLE_COUNT = 60;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.opacity = Math.random() * 0.4 + 0.1;
+    /* ── Project data ── */
+    const projectData = {
+      'ma-security': {
+        icon: '\u{1F6E1}', iconBg: '#3b82f610', iconColor: '#3b82f6',
+        badge: 'Active', badgeClass: 'b-active',
+        title: 'M&A Security', role: 'Acquisition Infrastructure Security Engineer',
+        desc: 'End-to-end security for mergers and acquisitions \u2014 from offensive due diligence and C2 assessments through post-close integration and clean hand-off.',
+        tags: ['Due Diligence','Pen Testing','Integration','Enterprise Security'],
+        url: 'https://moizqureshi.com/career', urlLabel: 'moizqureshi.com/career'
+      },
+      'interestingsoup': {
+        icon: '\u{1F3AC}', iconBg: '#f4368410', iconColor: '#f43684',
+        badge: 'Creator', badgeClass: 'b-creator',
+        title: 'InterestingSoup', role: 'TikTok & Content Creator',
+        desc: 'Tech, security, and life content \u2014 building a brand one video at a time.',
+        tags: ['TikTok','Content','Brand'],
+        url: 'https://interestingsoup.com', urlLabel: 'interestingsoup.com'
+      },
+      'ezpm': {
+        icon: '\u{1F3E0}', iconBg: '#22c55e10', iconColor: '#22c55e',
+        badge: 'Active', badgeClass: 'b-active',
+        title: 'EZPM', role: 'Founder & Operator',
+        desc: 'Property management company simplifying the landlord experience.',
+        tags: ['Property Management','Real Estate','Operations'],
+        url: 'https://getezpm.com', urlLabel: 'getezpm.com'
+      },
+      'qureshi-inc': {
+        icon: '\u2666', iconBg: '#818cf810', iconColor: '#818cf8',
+        badge: 'Active', badgeClass: 'b-active',
+        title: 'Qureshi Inc', role: 'Founder & Principal',
+        desc: 'Software consulting firm \u2014 strategy, architecture, and development for clients.',
+        tags: ['Consulting','Software','Architecture'],
+        url: 'https://qureshi.io', urlLabel: 'qureshi.io'
+      },
+      'soupprints': {
+        icon: '\u{1F4E6}', iconBg: '#f59e0b10', iconColor: '#f59e0b',
+        badge: 'Active', badgeClass: 'b-active',
+        title: 'SoupPrints', role: 'Founder & Operator',
+        desc: '3D printing business \u2014 custom prints, prototyping, and small-batch production.',
+        tags: ['3D Printing','E-Commerce','Manufacturing'],
+        url: 'https://print.interestingsoup.com', urlLabel: 'print.interestingsoup.com'
+      },
+      'kainban': {
+        icon: '\u26A1', iconBg: '#06b6d410', iconColor: '#06b6d4',
+        badge: 'Project', badgeClass: 'b-project',
+        title: 'kAInBan', role: 'Founder & Developer',
+        desc: 'AI-powered kanban app built from scratch.',
+        tags: ['SaaS','AI','Productivity'],
+        url: 'https://kainban.com', urlLabel: 'kainban.com'
+      },
+      'web-design': {
+        icon: '\u2728', iconBg: '#64748b10', iconColor: '#94a3b8',
+        badge: 'Design & Dev', badgeClass: 'b-project',
+        title: 'Web Design', role: 'Designer & Developer',
+        desc: 'Designed and developed websites for multiple organizations and brands.',
+        tags: [],
+        links: [
+          { label: 'InterestingSoup.com', url: 'https://interestingsoup.com' },
+          { label: 'RodeoMasjid.org', url: 'https://rodeomasjid.org' },
+          { label: 'kAInBan.com', url: 'https://kainban.com' },
+          { label: 'getezpm.com', url: 'https://getezpm.com' },
+          { label: 'moizqureshi.com', url: 'https://moizqureshi.com' }
+        ],
+        url: null, urlLabel: null
+      },
+      'envieria': {
+        icon: '\u{1F680}', iconBg: '#a855f710', iconColor: '#a855f7',
+        badge: 'Venture', badgeClass: 'b-venture',
+        title: 'Envieria', role: 'Founder \u2014 YC Startup School',
+        desc: 'Connected international college students with U.S. internship opportunities. Selected for Y Combinator Startup School.',
+        tags: ['Startup','YC Startup School','EdTech'],
+        url: 'https://enveiria.com', urlLabel: 'enveiria.com'
+      },
+      'universal-mercy': {
+        icon: '\u{1F4DA}', iconBg: '#14b8a610', iconColor: '#14b8a6',
+        badge: 'Nonprofit', badgeClass: 'b-venture',
+        title: 'Universal Mercy', role: 'Founder & Board of Directors',
+        desc: 'K\u20135 Islamic school blending Islamic teaching with American curriculum.',
+        tags: ['Education','Nonprofit','K\u20135'],
+        url: 'https://universalmercy.org', urlLabel: 'universalmercy.org'
+      },
+      'rodeo-masjid': {
+        icon: '\u{1F54C}', iconBg: '#22c55e10', iconColor: '#22c55e',
+        badge: 'Nonprofit', badgeClass: 'b-venture',
+        title: 'Rodeo Masjid', role: 'Co-Founder & Board of Directors',
+        desc: 'Co-founded a community mosque and served on the board of directors.',
+        tags: ['Community','Nonprofit','Leadership'],
+        url: 'https://rodeomasjid.org', urlLabel: 'rodeomasjid.org'
       }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
-        ctx.fill();
-      }
-    }
+    };
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+    /* ── Expand overlay ── */
+    const overlay = document.getElementById('expandOverlay');
+    const exIcon  = document.getElementById('exIcon');
+    const exBadge = document.getElementById('exBadge');
+    const exTitle = document.getElementById('exTitle');
+    const exRole  = document.getElementById('exRole');
+    const exDesc  = document.getElementById('exDesc');
+    const exTags  = document.getElementById('exTags');
+    const exLink  = document.getElementById('exLink');
 
-    function drawLines() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.06 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    let mouseParticleX = 0, mouseParticleY = 0;
-    document.addEventListener('mousemove', e => {
-      mouseParticleX = e.clientX;
-      mouseParticleY = e.clientY;
-    });
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        const dx = mouseParticleX - p.x;
-        const dy = mouseParticleY - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          p.x -= dx * 0.002;
-          p.y -= dy * 0.002;
-        }
-        p.update();
-        p.draw();
-      });
-      drawLines();
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    /* ========== SCROLL REVEAL ========== */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    /* ========== SCROLL PROGRESS ========== */
-    const progressBar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollTop / docHeight;
-      progressBar.style.transform = `scaleX(${progress})`;
-      progressBar.style.width = '100%';
-    });
-
-    /* ========== SIDE NAV ACTIVE STATE ========== */
-    const sectionIds = ['hero', 'about', 'toolbox', 'simulator', 'cadence', 'contact'];
-    const navDots = document.querySelectorAll('.side-nav a');
-
-    function updateActiveNav() {
-      let current = '';
-      sectionIds.forEach(id => {
-        const section = document.getElementById(id);
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-          current = id;
-        }
-      });
-      navDots.forEach(dot => {
-        dot.classList.toggle('active', dot.getAttribute('href') === '#' + current);
-      });
-    }
-    window.addEventListener('scroll', updateActiveNav);
-    updateActiveNav();
-
-    /* ========== SMOOTH NAV SCROLL ========== */
-    document.querySelectorAll('.side-nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    /* ========== ENCRYPTED CONTACT SECTION ========== */
-    (() => {
-      const glyphs = '0123456789abcdef{}[]/:~|<>^%#@!';
-      const els = document.querySelectorAll('.decrypt');
-      let decryptFired = false;
-
-      function rndChar() {
-        return glyphs[Math.floor(Math.random() * glyphs.length)];
-      }
-
-      function scramble(len) {
-        let s = '';
-        for (let i = 0; i < len; i++) s += rndChar();
-        return s;
-      }
-
-      els.forEach(el => {
-        const real = el.getAttribute('data-decrypt');
-        const h = el.offsetHeight;
-        el.style.height = h + 'px';
-        el.classList.add('locked', 'scrambled');
-        el.textContent = scramble(real.length);
-      });
-
-      function animateElement(el, onDone) {
-        const real = el.getAttribute('data-decrypt');
-        const len = real.length;
-        const current = scramble(len).split('');
-        const duration = 1600;
-        const resolveAt = [];
-        for (let i = 0; i < len; i++) {
-          resolveAt[i] = (i / len) * duration * 0.65 + Math.random() * duration * 0.35;
-        }
-
-        el.classList.add('decrypting');
-        const start = performance.now();
-
-        function tick(now) {
-          const elapsed = now - start;
-          let done = true;
-
-          for (let i = 0; i < len; i++) {
-            if (elapsed >= resolveAt[i]) {
-              current[i] = real[i];
-            } else {
-              if (Math.random() < 0.22) current[i] = rndChar();
-              done = false;
-            }
-          }
-
-          el.textContent = current.join('');
-
-          if (done) {
-            el.classList.remove('scrambled', 'decrypting');
-            setTimeout(() => {
-              el.classList.remove('locked');
-              el.style.height = '';
-            }, 600);
-          } else {
-            requestAnimationFrame(tick);
-          }
-        }
-
-        requestAnimationFrame(tick);
-      }
-
-      function decryptAll() {
-        if (decryptFired) return;
-        decryptFired = true;
-        els.forEach((el, i) => {
-          setTimeout(() => animateElement(el), i * 60);
+    function openExpand(id) {
+      const d = projectData[id];
+      if (!d) return;
+      exIcon.textContent = d.icon;
+      exIcon.style.background = d.iconBg;
+      exIcon.style.color = d.iconColor;
+      exBadge.textContent = d.badge;
+      exBadge.className = 'expand-badge ' + d.badgeClass;
+      exTitle.textContent = d.title;
+      exRole.textContent = d.role;
+      exDesc.textContent = d.desc;
+      exTags.innerHTML = '';
+      if (d.links) {
+        d.links.forEach(l => {
+          const a = document.createElement('a');
+          a.href = l.url; a.target = '_blank';
+          a.className = 'expand-tag'; a.textContent = l.label;
+          exTags.appendChild(a);
+        });
+      } else {
+        d.tags.forEach(t => {
+          const s = document.createElement('span');
+          s.className = 'expand-tag'; s.textContent = t;
+          exTags.appendChild(s);
         });
       }
-
-      const contactSection = document.getElementById('contactContainer');
-      if (contactSection) {
-        const decryptObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) decryptAll();
-          });
-        }, { threshold: 0.2 });
-        decryptObserver.observe(contactSection);
+      if (d.url) {
+        exLink.href = d.url; exLink.style.display = '';
+        exLink.firstChild.textContent = 'Visit ' + d.urlLabel + ' ';
+      } else {
+        exLink.style.display = 'none';
       }
-    })();
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-    /* ========== SCROLL-DRIVEN INTEGRATION SIMULATOR ========== */
-    (() => {
-      const outer = document.getElementById('simulator');
-      const tabs = document.querySelectorAll('.sim-phase-tab');
-      const panels = document.querySelectorAll('.sim-panel');
-      const progress = document.getElementById('simProgress');
-      const status = document.getElementById('simStatus');
-      const hint = document.querySelector('.sim-scroll-hint');
-      const totalItems = 18;
-      const PHASES = 3;
-      const ITEMS_PER_PHASE = 6;
-      const SCROLL_PER_ITEM = 120;
-      const SCROLL_BETWEEN_PHASES = 200;
-      const totalScroll = PHASES * ITEMS_PER_PHASE * SCROLL_PER_ITEM + (PHASES - 1) * SCROLL_BETWEEN_PHASES + 400;
+    function closeExpand() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-      outer.style.height = totalScroll + 'px';
+    document.getElementById('expandClose').addEventListener('click', closeExpand);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeExpand(); });
 
-      function update() {
-        const rect = outer.getBoundingClientRect();
-        const scrolled = -rect.top;
+    /* ══════════════════════════════════════════
+       DVD-BOUNCE PHYSICS ENGINE (mobile only)
+       with elastic circle-to-circle collisions
+       ══════════════════════════════════════════ */
+    const isMobile = () => window.innerWidth <= 768;
 
-        if (scrolled < 0 || rect.bottom < 0) return;
+    const BUBBLE_W = 90;
+    const BUBBLE_H = 90;
+    const RADIUS = 34;
+    const BASE_SPEED = 0.6;
+    const FRICTION = 0.985;
+    const FLING_MULT = 0.25;
+    const TAP_THRESHOLD = 8;
 
-        const phaseScroll = ITEMS_PER_PHASE * SCROLL_PER_ITEM + SCROLL_BETWEEN_PHASES;
-        let doneCount = 0;
-        let activePhase = 0;
+    const rings = [];
 
-        for (let p = 0; p < PHASES; p++) {
-          const phaseStart = p * phaseScroll;
-          if (scrolled >= phaseStart) activePhase = p;
+    function cx(item) { return item.x + BUBBLE_W * 0.5; }
+    function cy(item) { return item.y + BUBBLE_H * 0.5; }
+
+    function resolveCollision(a, b) {
+      const dx = cx(b) - cx(a);
+      const dy = cy(b) - cy(a);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const minDist = RADIUS * 2;
+
+      if (dist >= minDist || dist === 0) return;
+
+      const nx = dx / dist;
+      const ny = dy / dist;
+
+      const overlap = minDist - dist;
+      const pushA = a.dragging ? 0 : 0.5;
+      const pushB = b.dragging ? 0 : 0.5;
+      const totalPush = pushA + pushB || 1;
+      a.x -= nx * overlap * (pushA / totalPush);
+      a.y -= ny * overlap * (pushA / totalPush);
+      b.x += nx * overlap * (pushB / totalPush);
+      b.y += ny * overlap * (pushB / totalPush);
+
+      if (a.dragging && b.dragging) return;
+
+      const dvx = a.vx - b.vx;
+      const dvy = a.vy - b.vy;
+      const dvDotN = dvx * nx + dvy * ny;
+
+      if (dvDotN <= 0) return;
+
+      const massA = a.dragging ? 100 : 1;
+      const massB = b.dragging ? 100 : 1;
+      const impulse = (2 * dvDotN) / (massA + massB);
+
+      if (!a.dragging) {
+        a.vx -= impulse * massB * nx;
+        a.vy -= impulse * massB * ny;
+      }
+      if (!b.dragging) {
+        b.vx += impulse * massA * nx;
+        b.vy += impulse * massA * ny;
+      }
+    }
+
+    function initRing(ringEl) {
+      const bubbles = ringEl.querySelectorAll('.bubble');
+      const state = { el: ringEl, items: [], raf: null };
+
+      bubbles.forEach((bEl, i) => {
+        const rw = ringEl.clientWidth || 300;
+        const rh = ringEl.clientHeight || 220;
+        const angle = (Math.PI * 2 * i) / bubbles.length + Math.random() * 0.5;
+        const speed = BASE_SPEED + Math.random() * 0.4;
+
+        const cols = Math.ceil(Math.sqrt(bubbles.length));
+        const cellW = (rw - BUBBLE_W) / cols;
+        const cellH = (rh - BUBBLE_H) / Math.ceil(bubbles.length / cols);
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+
+        const item = {
+          el: bEl,
+          id: bEl.dataset.id,
+          x: col * cellW + Math.random() * Math.max(cellW - BUBBLE_W, 0),
+          y: row * cellH + Math.random() * Math.max(cellH - BUBBLE_H, 0),
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          dragging: false,
+          dragStartX: 0, dragStartY: 0,
+          dragOffX: 0, dragOffY: 0,
+          prevPtrX: 0, prevPtrY: 0,
+          dragMoved: 0
+        };
+        bEl.style.position = 'absolute';
+        bEl.style.left = item.x + 'px';
+        bEl.style.top = item.y + 'px';
+        state.items.push(item);
+
+        function ptrDown(e) {
+          if (!isMobile()) return;
+          e.preventDefault();
+          const pt = e.touches ? e.touches[0] : e;
+          const rect = ringEl.getBoundingClientRect();
+          item.dragging = true;
+          item.dragMoved = 0;
+          item.dragOffX = pt.clientX - rect.left - item.x;
+          item.dragOffY = pt.clientY - rect.top - item.y;
+          item.prevPtrX = pt.clientX;
+          item.prevPtrY = pt.clientY;
+          item.dragStartX = pt.clientX;
+          item.dragStartY = pt.clientY;
+          item.vx = 0;
+          item.vy = 0;
+          bEl.classList.add('dragging');
+        }
+        function ptrMove(e) {
+          if (!item.dragging) return;
+          e.preventDefault();
+          const pt = e.touches ? e.touches[0] : e;
+          const rect = ringEl.getBoundingClientRect();
+          const rw = ringEl.clientWidth;
+          const rh = ringEl.clientHeight;
+          const nx = pt.clientX - rect.left - item.dragOffX;
+          const ny = pt.clientY - rect.top - item.dragOffY;
+          item.x = Math.max(0, Math.min(rw - BUBBLE_W, nx));
+          item.y = Math.max(0, Math.min(rh - BUBBLE_H, ny));
+          item.vx = (pt.clientX - item.prevPtrX) * FLING_MULT;
+          item.vy = (pt.clientY - item.prevPtrY) * FLING_MULT;
+          item.prevPtrX = pt.clientX;
+          item.prevPtrY = pt.clientY;
+          item.dragMoved += Math.abs(pt.clientX - item.dragStartX) + Math.abs(pt.clientY - item.dragStartY);
+        }
+        function ptrUp(e) {
+          if (!item.dragging) return;
+          item.dragging = false;
+          bEl.classList.remove('dragging');
+          if (item.dragMoved < TAP_THRESHOLD) {
+            openExpand(item.id);
+          }
+          const sp = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+          if (sp < BASE_SPEED * 0.5) {
+            const a = Math.random() * Math.PI * 2;
+            item.vx = Math.cos(a) * BASE_SPEED;
+            item.vy = Math.sin(a) * BASE_SPEED;
+          }
         }
 
-        panels.forEach((pan, i) => pan.classList.toggle('active', i === activePhase));
+        bEl.addEventListener('touchstart', ptrDown, { passive: false });
+        bEl.addEventListener('mousedown', ptrDown);
+        document.addEventListener('touchmove', ptrMove, { passive: false });
+        document.addEventListener('mousemove', ptrMove);
+        document.addEventListener('touchend', ptrUp);
+        document.addEventListener('mouseup', ptrUp);
+      });
 
-        for (let p = 0; p < PHASES; p++) {
-          const phaseStart = p * phaseScroll;
-          const phaseProgress = Math.max(0, Math.min(1, (scrolled - phaseStart) / (ITEMS_PER_PHASE * SCROLL_PER_ITEM)));
-          const isComplete = scrolled >= phaseStart + ITEMS_PER_PHASE * SCROLL_PER_ITEM;
+      function tick() {
+        if (!isMobile()) { state.raf = requestAnimationFrame(tick); return; }
+        const rw = ringEl.clientWidth;
+        const rh = ringEl.clientHeight;
+        if (rw === 0 || rh === 0) { state.raf = requestAnimationFrame(tick); return; }
 
-          tabs[p].classList.remove('active', 'completed');
-          if (p === activePhase && !isComplete) tabs[p].classList.add('active');
-          if (isComplete) tabs[p].classList.add('completed');
+        const items = state.items;
 
-          const items = panels[p].querySelectorAll('.sim-item');
+        for (const item of items) {
+          if (item.dragging) continue;
 
-          if (p === activePhase) {
-            items.forEach((item, i) => {
-              const showAt = i / ITEMS_PER_PHASE;
-              const doneAt = (i + 0.5) / ITEMS_PER_PHASE;
-              if (phaseProgress >= doneAt) {
-                item.classList.add('visible', 'done');
-              } else if (phaseProgress >= showAt) {
-                item.classList.add('visible');
-                item.classList.remove('done');
-              } else {
-                item.classList.remove('visible', 'done');
-              }
-            });
-          } else if (isComplete) {
-            items.forEach(item => item.classList.add('visible', 'done'));
-          } else {
-            items.forEach(item => item.classList.remove('visible', 'done'));
+          const sp = Math.sqrt(item.vx * item.vx + item.vy * item.vy);
+          if (sp > BASE_SPEED * 1.5) {
+            item.vx *= FRICTION;
+            item.vy *= FRICTION;
+          } else if (sp < BASE_SPEED * 0.8) {
+            const scale = BASE_SPEED / Math.max(sp, 0.01);
+            item.vx *= scale;
+            item.vy *= scale;
           }
 
-          if (isComplete) doneCount += ITEMS_PER_PHASE;
-          else {
-            items.forEach(item => { if (item.classList.contains('done')) doneCount++; });
+          item.x += item.vx;
+          item.y += item.vy;
+        }
+
+        for (let i = 0; i < items.length; i++) {
+          for (let j = i + 1; j < items.length; j++) {
+            resolveCollision(items[i], items[j]);
           }
         }
 
-        doneCount = Math.min(doneCount, totalItems);
-        progress.style.width = (doneCount / totalItems * 100) + '%';
+        for (const item of items) {
+          if (item.x <= 0)              { item.x = 0;              if (!item.dragging) item.vx = Math.abs(item.vx); }
+          if (item.x >= rw - BUBBLE_W)  { item.x = rw - BUBBLE_W; if (!item.dragging) item.vx = -Math.abs(item.vx); }
+          if (item.y <= 0)              { item.y = 0;              if (!item.dragging) item.vy = Math.abs(item.vy); }
+          if (item.y >= rh - BUBBLE_H)  { item.y = rh - BUBBLE_H; if (!item.dragging) item.vy = -Math.abs(item.vy); }
 
-        if (doneCount === totalItems) {
-          progress.classList.add('complete');
-          status.textContent = 'Integration complete \u2014 ' + totalItems + ' / ' + totalItems + ' workstreams';
-          status.style.color = '#22c55e';
-          if (hint) hint.style.display = 'none';
-        } else if (doneCount > 0) {
-          progress.classList.remove('complete');
-          status.textContent = 'Day ' + Math.round(doneCount / totalItems * 90) + ' \u2014 ' + doneCount + ' / ' + totalItems + ' workstreams';
-          status.style.color = '';
-          if (hint) hint.style.display = '';
-        } else {
-          progress.classList.remove('complete');
-          status.textContent = 'Scroll to begin \u2014 0 / ' + totalItems + ' workstreams';
-          status.style.color = '';
-          if (hint) hint.style.display = '';
+          item.el.style.left = item.x + 'px';
+          item.el.style.top = item.y + 'px';
         }
+
+        state.raf = requestAnimationFrame(tick);
       }
 
-      window.addEventListener('scroll', update, { passive: true });
-      update();
-    })();
+      state.raf = requestAnimationFrame(tick);
+      rings.push(state);
+    }
+
+    document.querySelectorAll('.bubble-ring').forEach(initRing);
   </script>
 </body>
 </html>
